@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import { useTranslation } from '@hooks';
 import { useSelector } from 'react-redux';
 import { settingsSelector, useGetTransactionsListQuery } from '@store';

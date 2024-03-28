@@ -21,6 +21,7 @@ module.exports = {
           '@navigators': ['./src/navigators'],
           '@store': ['./src/store'],
           '@locales': ['./src/locales'],
+          '@components': ['./src/components'],
         },
       },
     ],

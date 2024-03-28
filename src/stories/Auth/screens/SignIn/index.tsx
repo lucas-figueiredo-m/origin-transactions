@@ -7,7 +7,7 @@ import { settingsSelector, useGetTransactionsListQuery } from '@store';
 export const SignIn: React.FC = () => {
   const t = useTranslation();
   const { locale } = useSelector(settingsSelector);
-  const { data, error, isLoading } = useGetTransactionsListQuery(1);
+  const { data } = useGetTransactionsListQuery(1);
 
   console.log(data);
   return (

@@ -2,7 +2,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { MainStackParamList } from './MainStack.type';
 import { MainStackRoutes } from './MainStack.enum';
-import { SignIn, SignUp } from '../../stories';
+import { SignIn, SignUp } from '@stories';
 
 const Stack = createStackNavigator<MainStackParamList>();
 

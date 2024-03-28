@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { useTranslation } from '../../../../hooks/';
+import { useTranslation } from '@hooks';
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();

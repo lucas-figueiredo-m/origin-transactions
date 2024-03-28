@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text, View } from 'react-native';
 import { useTranslation } from '@hooks';
 import { useSelector } from 'react-redux';
 import { settingsSelector, useGetTransactionsListQuery } from '@store';
@@ -12,10 +12,10 @@ export const SignIn: React.FC = () => {
 
   console.log(data);
   return (
-    <View>
+    <SafeAreaView>
       <Text>{t('hello')}</Text>
       <Text>{locale}</Text>
       <Text>{Config.TEST}</Text>
-    </View>
+    </SafeAreaView>
   );
 };

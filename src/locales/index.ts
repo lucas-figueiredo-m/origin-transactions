@@ -3,6 +3,8 @@ import { initReactI18next } from 'react-i18next';
 
 import * as resources from './resources';
 
+export type Locales = keyof typeof resources;
+
 const i18nResources = Object.entries(resources).reduce(
   (acc, [key, value]) => ({
     ...acc,

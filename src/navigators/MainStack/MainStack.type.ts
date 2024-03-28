@@ -1,6 +1,7 @@
+import { NavigatorScreenParams } from '@react-navigation/native';
 import { MainStackRoutes } from './MainStack.enum';
+import { AuthStackParamList } from '../AuthStack';
 
 export type MainStackParamList = {
-  [MainStackRoutes.SignIn]: undefined;
-  [MainStackRoutes.SignUp]: undefined;
+  [MainStackRoutes.AuthStack]: NavigatorScreenParams<AuthStackParamList>;
 };

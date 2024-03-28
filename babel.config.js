@@ -19,6 +19,8 @@ module.exports = {
           '@stories': ['./src/stories'],
           '@hooks': ['./src/hooks'],
           '@navigators': ['./src/navigators'],
+          '@store': ['./src/store'],
+          '@locales': ['./src/locales'],
         },
       },
     ],

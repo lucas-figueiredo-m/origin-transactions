@@ -1,0 +1,32 @@
+LC_ALL=C
+
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+previous_branch="$(git rev-parse --abbrev-ref @{-1})"
+
+valid_branch_regex="^(feature|bugfix|improvement|library|prerelease|release|hotfix)\/[a-z0-9._-]+$|^master$|^develop$|^staging$"
+
+message1="Your branch name doesn't match the contract:
+$valid_branch_regex"
+message2="Examples of valid branch names are:"
+message3="feature/my-feature, bugfix/my-bugfix, improvement/my-improvement,
+library/my-library, prerelease/my-prerelease, release/my-release,
+hotfix/my-hotfix, main, develop, staging"
+
+RED='\033[0;31m' # RED
+NC='\033[0m' # No Color
+LIGHT_RED='\033[1;31m' # Light Red
+GREEN='\033[0;32m' # Green
+LIGHT_GREEN='\033[1;32m' # Light Green
+
+if [[ ! $current_branch =~ $valid_branch_regex ]]
+then
+    echo "${LIGHT_RED}$message1${NC}"
+    echo ""
+    echo "$message2"
+    echo "${LIGHT_GREEN}$message3${NC}"
+    git checkout $previous_branch --quiet
+    git branch -D $current_branch --quiet
+    exit 1
+fi
+
+exit 0

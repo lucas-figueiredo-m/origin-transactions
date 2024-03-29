@@ -10,8 +10,10 @@ import {
 } from './validator';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from '@hooks';
 
 export const SignIn: React.FC = () => {
+  const t = useTranslation();
   const {
     handleSubmit,
     control,
@@ -63,8 +65,8 @@ export const SignIn: React.FC = () => {
       </View>
       <Button.Large label={'signIn.signIn'} onPress={handleSubmit(onSubmit)} />
       <Text style={styles.signUpContainer}>
-        <Text>Don't have an account? </Text>
-        <Text style={styles.signUp}>Sign up</Text>
+        <Text>{t('signIn.dontHaveAccount')}</Text>
+        <Text style={styles.signUp}>{t('signIn.signUp')}</Text>
       </Text>
     </SafeAreaView>
   );

@@ -22,6 +22,7 @@ module.exports = {
           '@store': ['./src/store'],
           '@locales': ['./src/locales'],
           '@components': ['./src/components'],
+          '@assets': ['./src/assets'],
         },
       },
     ],

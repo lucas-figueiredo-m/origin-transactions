@@ -1,21 +1,30 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
-import { useTranslation } from '@hooks';
-import { useSelector } from 'react-redux';
-import { settingsSelector, useGetTransactionsListQuery } from '@store';
-import Config from 'react-native-config';
+import { SafeAreaView, Text, View } from 'react-native';
+import { styles } from './styles';
+import { Button, TextInput } from '@components';
+import { Logo } from '@assets/icons';
 
 export const SignIn: React.FC = () => {
-  const t = useTranslation();
-  const { locale } = useSelector(settingsSelector);
-  const { data } = useGetTransactionsListQuery(1);
-
-  console.log(data);
   return (
-    <SafeAreaView>
-      <Text>{t('hello')}</Text>
-      <Text>{locale}</Text>
-      <Text>{Config.TEST}</Text>
+    <SafeAreaView style={styles.root}>
+      <Logo width={200} height={200} />
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          keyboardType="email-address"
+          placeholder={'signIn.email'}
+        />
+        <TextInput
+          style={styles.input}
+          secureTextEntry
+          placeholder={'signIn.password'}
+        />
+      </View>
+      <Button.Large label={'signIn.signIn'} />
+      <Text style={styles.signUpContainer}>
+        <Text>Don't have an account? </Text>
+        <Text style={styles.signUp}>Sign up</Text>
+      </Text>
     </SafeAreaView>
   );
 };

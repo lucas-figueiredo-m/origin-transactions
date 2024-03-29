@@ -4,7 +4,7 @@ export enum Colors {
   Terciary = '#9BBBF9',
   White = '#FFFFFF',
   Black = '#000000',
-  Grey = '#BDBDBD',
+  Grey = 'gray',
   Transparent = 'transparent',
   Error = '#FF0000',
   Success = '#00FF00',

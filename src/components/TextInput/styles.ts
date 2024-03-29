@@ -1,4 +1,4 @@
-import { FontSize, FontWeight } from '@theme';
+import { Colors, FontSize, FontWeight } from '@theme';
 import { StyleSheet } from 'react-native';
 
 const PLACEHOLDER_FONT_SIZE = FontSize.sm;
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   input: {
     height: INPUT_BASE_HEIGHT,
     borderRadius: 5,
-    borderColor: 'gray',
+    borderColor: Colors.Grey,
     borderWidth: 1,
     paddingHorizontal: 8,
   },
@@ -29,5 +29,6 @@ export const styles = StyleSheet.create({
   error: {
     fontSize: ERROR_FONT_SIZE,
     fontWeight: FontWeight.semibold,
+    color: Colors.Error,
   },
 });

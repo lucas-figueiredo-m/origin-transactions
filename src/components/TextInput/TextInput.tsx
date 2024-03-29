@@ -10,6 +10,7 @@ import { Translation, useTranslation } from '@hooks';
 
 type TextInputType = Omit<TextInputProps, 'placeholder'> & {
   placeholder: Translation;
+  error?: string;
 };
 
 export const TextInput = forwardRef<RNTextInput, TextInputType>(
@@ -21,7 +22,7 @@ export const TextInput = forwardRef<RNTextInput, TextInputType>(
       <View style={[styles.root, style]}>
         <Text style={styles.placeholder}>{t(placeholder)}</Text>
         <RNTextInput {...props} ref={ref} style={styles.input} placeholder="" />
-        <Text style={styles.error}>Error message</Text>
+        {props.error && <Text style={styles.error}>{t(props.error)}</Text>}
       </View>
     );
   },

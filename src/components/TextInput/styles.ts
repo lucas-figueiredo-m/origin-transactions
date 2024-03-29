@@ -1,7 +1,8 @@
+import { FontSize, FontWeight } from '@theme';
 import { StyleSheet } from 'react-native';
 
-const PLACEHOLDER_FONT_SIZE = 12;
-const ERROR_FONT_SIZE = 11;
+const PLACEHOLDER_FONT_SIZE = FontSize.sm;
+const ERROR_FONT_SIZE = FontSize.xs;
 const INPUT_BASE_HEIGHT = 35;
 
 const INPUT_TOTAL_HEIGHT =
@@ -27,6 +28,6 @@ export const styles = StyleSheet.create({
 
   error: {
     fontSize: ERROR_FONT_SIZE,
-    fontWeight: '600',
+    fontWeight: FontWeight.semibold,
   },
 });

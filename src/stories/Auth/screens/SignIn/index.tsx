@@ -1,31 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
-import { SignInValidatorType } from './validator';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from '@hooks';
 
 import { useSignInForm } from './hooks';
-import { AuthService } from '@services';
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();
-  const { handleSubmit, control, errors } = useSignInForm();
-  const [loading, setLoading] = useState(false);
-
-  const onSubmit = async (data: SignInValidatorType) => {
-    setLoading(true);
-    try {
-      const user = await AuthService.signIn(data.email, data.password);
-      console.log(user);
-      console.log('User signed in!');
-    } catch (error) {
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { onSignInPress, control, errors, loading } = useSignInForm();
 
   return (
     <SafeAreaView style={styles.root}>
@@ -64,7 +49,7 @@ export const SignIn: React.FC = () => {
       <Button.Large
         loading={loading}
         label={'signIn.signIn'}
-        onPress={handleSubmit(onSubmit)}
+        onPress={onSignInPress}
       />
       <Text style={styles.signUpContainer}>
         <Text>{t('signIn.dontHaveAccount')}</Text>

@@ -11,10 +11,12 @@ export default {
   },
   signUp: {
     email: 'E-mail',
+    name: 'Name',
     password: 'Password',
     confirmPassword: 'Confirm Password',
     signUp: 'Sign Up',
     validEmail: 'Please, enter a valid e-mail',
+    validName: 'Your name must contain at least 1 character',
     validPassword: 'Your password must have at least 1 character',
     doesHaveAccount: 'Already have an account? ',
     signIn: 'Sign In',

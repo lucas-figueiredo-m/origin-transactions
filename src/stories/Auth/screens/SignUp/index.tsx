@@ -43,6 +43,21 @@ export const SignUp: React.FC = () => {
         />
         <Controller
           control={control}
+          name="name"
+          render={({ field }) => (
+            <TextInput
+              style={styles.input}
+              placeholder={'signUp.name'}
+              onChangeText={field.onChange}
+              autoCapitalize="none"
+              keyboardType="email-address"
+              value={field.value}
+              error={errors.name?.message}
+            />
+          )}
+        />
+        <Controller
+          control={control}
           name="password"
           render={({ field }) => (
             <TextInput

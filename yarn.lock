@@ -1867,6 +1867,11 @@
   dependencies:
     stacktrace-js "^2.0.2"
 
+"@react-native-firebase/firestore@^19.1.1":
+  version "19.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-19.1.1.tgz#c216763d155320ae96bd7e87f01479534ba11a93"
+  integrity sha512-uWGxa98m+qJVVoQ/ZRg2qz35y2lsB8J4tuV6EqdxcemnFwdTa8aQcHUHkUDr73+DWoMWNdbOlvMhPyjtLG2piQ==
+
 "@react-native-masked-view/masked-view@^0.3.1":
   version "0.3.1"
   resolved "https://registry.npmjs.org/@react-native-masked-view/masked-view/-/masked-view-0.3.1.tgz"
@@ -6572,6 +6577,11 @@ react-native-gesture-handler@^2.16.0:
     invariant "^2.2.4"
     lodash "^4.17.21"
     prop-types "^15.7.2"
+
+react-native-image-picker@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-7.1.2.tgz#383849d1953caf4578874a1f5e5dd11c737bd5cd"
+  integrity sha512-b5y5nP60RIPxlAXlptn2QwlIuZWCUDWa/YPUVjgHc0Ih60mRiOg1PSzf0IjHSLeOZShCpirpvSPGnDExIpTRUg==
 
 react-native-reanimated@^3.8.1:
   version "3.8.1"

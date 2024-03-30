@@ -7,10 +7,20 @@ import { Controller } from 'react-hook-form';
 import { useTranslation } from '@hooks';
 
 import { useSignInForm } from './hooks';
+import { useNavigation } from '@react-navigation/native';
+import { AuthStackNavigationParams, AuthStackRoutes } from '@navigators';
+
+type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignIn>;
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();
   const { onSignInPress, control, errors, loading } = useSignInForm();
+
+  const { navigate } = useNavigation<SignInNavigation>();
+
+  const onSignUpPress = () => {
+    navigate(AuthStackRoutes.SignUp);
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -53,7 +63,9 @@ export const SignIn: React.FC = () => {
       />
       <Text style={styles.signUpContainer}>
         <Text>{t('signIn.dontHaveAccount')}</Text>
-        <Text style={styles.signUp}>{t('signIn.signUp')}</Text>
+        <Text onPress={onSignUpPress} style={styles.signUp}>
+          {t('signIn.signUp')}
+        </Text>
       </Text>
     </SafeAreaView>
   );

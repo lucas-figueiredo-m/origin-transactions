@@ -1,32 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
-import {
-  SignInDefaultValues,
-  SignInValidator,
-  SignInValidatorType,
-} from './validator';
-import { useForm, Controller } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { SignInValidatorType } from './validator';
+import { Controller } from 'react-hook-form';
 import { useTranslation } from '@hooks';
+
+import { useSignInForm } from './hooks';
+import { AuthService } from '@services';
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<SignInValidatorType>({
-    defaultValues: SignInDefaultValues,
-    resolver: zodResolver(SignInValidator),
-    mode: 'onBlur',
-    reValidateMode: 'onChange',
-  });
+  const { handleSubmit, control, errors } = useSignInForm();
+  const [loading, setLoading] = useState(false);
 
-  const onSubmit = (data: SignInValidatorType) => {
-    console.log(data);
+  const onSubmit = async (data: SignInValidatorType) => {
+    setLoading(true);
+    try {
+      const user = await AuthService.signIn(data.email, data.password);
+      console.log(user);
+      console.log('User signed in!');
+    } catch (error) {
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -63,7 +61,11 @@ export const SignIn: React.FC = () => {
           )}
         />
       </View>
-      <Button.Large label={'signIn.signIn'} onPress={handleSubmit(onSubmit)} />
+      <Button.Large
+        loading={loading}
+        label={'signIn.signIn'}
+        onPress={handleSubmit(onSubmit)}
+      />
       <Text style={styles.signUpContainer}>
         <Text>{t('signIn.dontHaveAccount')}</Text>
         <Text style={styles.signUp}>{t('signIn.signUp')}</Text>

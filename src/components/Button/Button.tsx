@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { styles } from './styles';
 import { Translation, useTranslation } from '@hooks';
+import { Colors } from '@theme';
 
 type ButtonProps = {
   label: Translation;
@@ -29,7 +30,7 @@ const BaseButton: React.FC<ButtonProps> = ({
   return (
     <TouchableOpacity style={[styles.root, style]} onPress={onPress}>
       {loading ? (
-        <ActivityIndicator size="small" color="white" />
+        <ActivityIndicator size="small" color={Colors.White} />
       ) : (
         <Text style={[styles.label, labelStyle]}>{t(label)}</Text>
       )}

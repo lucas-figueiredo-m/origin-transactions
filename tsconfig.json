@@ -11,6 +11,7 @@
       "@locales": ["./src/locales"],
       "@components": ["./src/components"],
       "@theme": ["./src/theme"],
+      "@services": ["./src/services"],
       "@assets/*": ["./src/assets/*"],
     }
   }

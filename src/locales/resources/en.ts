@@ -21,5 +21,6 @@ export default {
     doesHaveAccount: 'Already have an account? ',
     signIn: 'Sign In',
     passwordsDontMatch: 'Passwords do not match',
+    title: 'Origin Transactions',
   },
 };

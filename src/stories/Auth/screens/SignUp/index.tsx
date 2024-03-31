@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
-import { Button, TextInput } from '@components';
+import { Avatar, Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from '@hooks';
 
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationParams, AuthStackRoutes } from '@navigators';
+import { ImagePickerService } from '@services';
 import { useSignUpForm } from './hooks';
 
 type SignUpNavigation = AuthStackNavigationParams<AuthStackRoutes.SignUp>;
@@ -15,6 +16,7 @@ type SignUpNavigation = AuthStackNavigationParams<AuthStackRoutes.SignUp>;
 export const SignUp: React.FC = () => {
   const t = useTranslation();
   const { onSignUpPress, control, errors, loading } = useSignUpForm();
+  const [image, setImage] = useState<string>('');
 
   const { navigate } = useNavigation<SignUpNavigation>();
 
@@ -22,9 +24,22 @@ export const SignUp: React.FC = () => {
     navigate(AuthStackRoutes.SignIn);
   };
 
+  const onEditPress = async () => {
+    const result = await ImagePickerService.getImageFromGallery();
+    if (!result) {
+      return;
+    }
+    setImage(`data:image/jpeg;base64,${result}`);
+    console.log(result.slice(0, 50));
+  };
+
   return (
     <SafeAreaView style={styles.root}>
-      <Logo width={200} height={200} />
+      <View style={styles.header}>
+        <Logo width={75} height={75} />
+        <Text style={styles.title}>{t('signUp.title')}</Text>
+      </View>
+      <Avatar src={image} onEditPress={onEditPress} />
       <View style={styles.inputContainer}>
         <Controller
           control={control}

@@ -32,4 +32,15 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: Colors.Support,
   },
+
+  header: {
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '500',
+  },
 });

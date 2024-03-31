@@ -847,6 +847,9 @@ PODS:
   - Firebase/Firestore (10.23.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 10.23.0)
+  - Firebase/Storage (10.23.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 10.23.0)
   - FirebaseAnalytics (10.23.1):
     - FirebaseAnalytics/AdIdSupport (= 10.23.1)
     - FirebaseCore (~> 10.0)
@@ -873,6 +876,7 @@ PODS:
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
     - RecaptchaInterop (~> 100.0)
+  - FirebaseAuthInterop (10.23.0)
   - FirebaseCore (10.23.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.12)
@@ -925,6 +929,12 @@ PODS:
     - nanopb (< 2.30911.0, >= 2.30908.0)
     - PromisesSwift (~> 2.1)
   - FirebaseSharedSwift (10.23.0)
+  - FirebaseStorage (10.23.0):
+    - FirebaseAppCheckInterop (~> 10.0)
+    - FirebaseAuthInterop (~> 10.0)
+    - FirebaseCore (~> 10.0)
+    - FirebaseCoreExtension (~> 10.0)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
   - fmt (6.2.1)
   - glog (0.3.5)
   - GoogleAppMeasurement (10.23.1):
@@ -2143,6 +2153,10 @@ PODS:
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - React-Core
     - RNFBApp
+  - RNFBStorage (19.1.1):
+    - Firebase/Storage (= 10.23.0)
+    - React-Core
+    - RNFBApp
   - RNGestureHandler (2.16.0):
     - glog
     - RCT-Folly (= 2022.05.16.00)
@@ -2221,6 +2235,7 @@ DEPENDENCIES:
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBCrashlytics (from `../node_modules/@react-native-firebase/crashlytics`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
+  - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -2235,6 +2250,7 @@ SPEC REPOS:
     - FirebaseAnalytics
     - FirebaseAppCheckInterop
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseCoreExtension
     - FirebaseCoreInternal
@@ -2245,6 +2261,7 @@ SPEC REPOS:
     - FirebaseRemoteConfigInterop
     - FirebaseSessions
     - FirebaseSharedSwift
+    - FirebaseStorage
     - fmt
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -2374,6 +2391,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/crashlytics"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
+  RNFBStorage:
+    :path: "../node_modules/@react-native-firebase/storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
@@ -2396,6 +2415,7 @@ SPEC CHECKSUMS:
   FirebaseAnalytics: fd35d51e6da86ef1aa2c3fe1f64ab2482cc01ba5
   FirebaseAppCheckInterop: a1955ce8c30f38f87e7d091630e871e91154d65d
   FirebaseAuth: 22eb85d3853141de7062bfabc131aa7d6335cade
+  FirebaseAuthInterop: a458e398bb1e9b71b9b42d46e54acc666b021d0f
   FirebaseCore: 63efb128decaebb04c4033ed4e05fb0bb1cccef1
   FirebaseCoreExtension: cb88851781a24e031d1b58e0bd01eb1f46b044b5
   FirebaseCoreInternal: 6a292e6f0bece1243a737e81556e56e5e19282e3
@@ -2406,6 +2426,7 @@ SPEC CHECKSUMS:
   FirebaseRemoteConfigInterop: cbc87ffa4932719a7911a08e94510f18f026f5a7
   FirebaseSessions: f06853e30f99fe42aa511014d7ee6c8c319f08a3
   FirebaseSharedSwift: c92645b392db3c41a83a0aa967de16f8bad25568
+  FirebaseStorage: 96fd765b2ef632c53b214057691e257538b8c496
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
   glog: c5d68082e772fa1c511173d6b30a9de2c05a69a2
   GoogleAppMeasurement: 794d1d2f71fdf77a077a3986258a5c2dac0f9d48
@@ -2471,6 +2492,7 @@ SPEC CHECKSUMS:
   RNFBAuth: df3db096d7b53ca36762dd9a158c0059bde34ec9
   RNFBCrashlytics: 03d494d1a51c8d3c45506a249ea809e40793c034
   RNFBFirestore: e1c8d5bb9abaf1002c161cd84d8ecccbf33ab721
+  RNFBStorage: ddc7d5f0ac80c753c093738d8277524ea7567c4a
   RNGestureHandler: 0c8b0283d2aff561162b2f55c604d2f1f8e2c4ea
   RNReanimated: de95bb2cf26ccfa2b6fdf7e1a57158fb5c9d9515
   RNScreens: 97a2a32820e632c5978d75250afa397ed9053910

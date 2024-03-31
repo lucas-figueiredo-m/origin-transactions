@@ -1872,6 +1872,11 @@
   resolved "https://registry.yarnpkg.com/@react-native-firebase/firestore/-/firestore-19.1.1.tgz#c216763d155320ae96bd7e87f01479534ba11a93"
   integrity sha512-uWGxa98m+qJVVoQ/ZRg2qz35y2lsB8J4tuV6EqdxcemnFwdTa8aQcHUHkUDr73+DWoMWNdbOlvMhPyjtLG2piQ==
 
+"@react-native-firebase/storage@^19.1.1":
+  version "19.1.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/storage/-/storage-19.1.1.tgz#55cc32719b47c4c98a6abc3970d0d597e3613d5a"
+  integrity sha512-aNpcZS8opfPjCAhJ5HIr5xeLJqk9djZnfTrhAVRLp+VTbhczzBk9ytAeW8NFQYZ/G+LKZwZ9clkPBGB9bB+YBg==
+
 "@react-native-masked-view/masked-view@^0.3.1":
   version "0.3.1"
   resolved "https://registry.npmjs.org/@react-native-masked-view/masked-view/-/masked-view-0.3.1.tgz"

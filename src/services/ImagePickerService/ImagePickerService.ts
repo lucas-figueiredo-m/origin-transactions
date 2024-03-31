@@ -12,7 +12,12 @@ export class ImagePickerService {
       return null;
     }
 
-    return result?.assets?.[0].base64 || '';
+    const base64 = `data:image/jpeg;base64,${result?.assets?.[0].base64}`;
+
+    return {
+      base64,
+      path: result?.assets?.[0].uri || '',
+    };
   }
 
   static async getImageFromCamera() {
@@ -26,6 +31,11 @@ export class ImagePickerService {
       return null;
     }
 
-    return result?.assets?.[0].base64 || '';
+    const base64 = `data:image/jpeg;base64,${result?.assets?.[0].base64}`;
+
+    return {
+      base64,
+      path: result?.assets?.[0].uri || '',
+    };
   }
 }

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import React from 'react';
+import { Alert, SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { Avatar, Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
@@ -8,15 +8,14 @@ import { useTranslation } from '@hooks';
 
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationParams, AuthStackRoutes } from '@navigators';
-import { ImagePickerService } from '@services';
 import { useSignUpForm } from './hooks';
 
 type SignUpNavigation = AuthStackNavigationParams<AuthStackRoutes.SignUp>;
 
 export const SignUp: React.FC = () => {
   const t = useTranslation();
-  const { onSignUpPress, control, errors, loading } = useSignUpForm();
-  const [image, setImage] = useState<string>('');
+  const { onSignUpPress, control, errors, loading, image, onEditImagePress } =
+    useSignUpForm();
 
   const { navigate } = useNavigation<SignUpNavigation>();
 
@@ -24,13 +23,12 @@ export const SignUp: React.FC = () => {
     navigate(AuthStackRoutes.SignIn);
   };
 
-  const onEditPress = async () => {
-    const result = await ImagePickerService.getImageFromGallery();
-    if (!result) {
-      return;
+  const onSignUp = () => {
+    if (!image.base64 || image.base64 === '') {
+      return Alert.alert('Please, select a profile picture.');
     }
-    setImage(`data:image/jpeg;base64,${result}`);
-    console.log(result.slice(0, 50));
+
+    onSignUpPress();
   };
 
   return (
@@ -39,7 +37,7 @@ export const SignUp: React.FC = () => {
         <Logo width={75} height={75} />
         <Text style={styles.title}>{t('signUp.title')}</Text>
       </View>
-      <Avatar src={image} onEditPress={onEditPress} />
+      <Avatar src={image.base64} onEditPress={onEditImagePress} />
       <View style={styles.inputContainer}>
         <Controller
           control={control}
@@ -103,7 +101,7 @@ export const SignUp: React.FC = () => {
       <Button.Large
         loading={loading}
         label={'signUp.signUp'}
-        onPress={onSignUpPress}
+        onPress={onSignUp}
       />
       <Text style={styles.signInContainer}>
         <Text>{t('signUp.doesHaveAccount')}</Text>

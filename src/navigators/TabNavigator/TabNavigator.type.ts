@@ -17,3 +17,9 @@ export type TabRouteParams<T extends TabRoutes> = RouteProp<
   TabNavigatorParamList,
   T
 >;
+
+export type TabBarIconProps = {
+  color: string;
+  size: number;
+  focused: boolean;
+};

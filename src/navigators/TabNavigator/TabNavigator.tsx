@@ -22,6 +22,7 @@ export const TabNavigator: React.FC = () => {
         options={{
           tabBarIcon: MoneyIcon,
           tabBarLabel: t('tabNavigator.transactionsList'),
+          headerTitle: t('tabNavigator.transactionsList'),
         }}
       />
       <Tabs.Screen
@@ -30,6 +31,7 @@ export const TabNavigator: React.FC = () => {
         options={{
           tabBarIcon: UserIcon,
           tabBarLabel: t('tabNavigator.profile'),
+          headerTitle: t('tabNavigator.profile'),
         }}
       />
     </Tabs.Navigator>

@@ -2,6 +2,12 @@
 #
 .DS_Store
 
+.env
+
+#Firebase
+ios/GoogleService-Info.plist
+android/app/google-services.json
+
 # Xcode
 #
 build/

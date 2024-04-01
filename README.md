@@ -11,7 +11,7 @@ Your task is to create a simple mobile application with the following features:
 ### **1. Sign-In and Sign-Up Page**
 
 - [x] **Sign-In Page**: Allow users to sign in to their account.
-- [ ] **Sign-Up Page**: Allow new users to create an account. During the sign-up process, users must enter basic information (like name, email, password, etc.) and upload a selfie.
+- [x] **Sign-Up Page**: Allow new users to create an account. During the sign-up process, users must enter basic information (like name, email, password, etc.) and upload a selfie.
 
 ### **2. Transactions Listing Page**
 
@@ -33,9 +33,9 @@ Your task is to create a simple mobile application with the following features:
 
 ## **Technical Requirements**
 
-- [ ] The application should be developed using React Native.
+- [x] The application should be developed using React Native.
 - [ ] Ensure the app is compatible with both iOS and Android.
-- [ ] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
+- [x] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
 - [ ] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
 - [ ] Include a README file with clear instructions on how to set up and run your application.
 

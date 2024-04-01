@@ -7,6 +7,15 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AuthService } from '@services';
 import { useState } from 'react';
+import {
+  AuthStackNavigationParams,
+  AuthStackRoutes,
+  MainStackRoutes,
+  TabRoutes,
+} from '@navigators';
+import { useNavigation } from '@react-navigation/native';
+
+type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignIn>;
 
 export const useSignInForm = () => {
   const {
@@ -21,13 +30,21 @@ export const useSignInForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const { reset } = useNavigation<SignInNavigation>();
 
   const onSubmit = async (data: SignInValidatorType) => {
     setLoading(true);
     try {
-      const user = await AuthService.signIn(data.email, data.password);
-      console.log(user);
-      console.log('User signed in!');
+      await AuthService.signIn(data.email, data.password);
+      reset({
+        index: 0,
+        routes: [
+          {
+            name: MainStackRoutes.TabNavigator,
+            params: { screen: TabRoutes.TransactionsList },
+          },
+        ],
+      });
     } catch (error) {
     } finally {
       setLoading(false);

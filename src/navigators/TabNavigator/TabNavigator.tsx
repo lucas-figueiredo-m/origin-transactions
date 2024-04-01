@@ -6,6 +6,7 @@ import { Money, User } from '@assets/icons';
 import { TabNavigatorParamList } from '.';
 import { withTabIcon } from './HOC';
 import { useTranslation } from '@hooks';
+import { Colors } from '@theme';
 
 const Tabs = createBottomTabNavigator<TabNavigatorParamList>();
 
@@ -15,7 +16,7 @@ const MoneyIcon = withTabIcon(Money);
 export const TabNavigator: React.FC = () => {
   const t = useTranslation();
   return (
-    <Tabs.Navigator>
+    <Tabs.Navigator screenOptions={{ tabBarActiveTintColor: Colors.Primary }}>
       <Tabs.Screen
         name={TabRoutes.TransactionsList}
         component={TransactionsList}

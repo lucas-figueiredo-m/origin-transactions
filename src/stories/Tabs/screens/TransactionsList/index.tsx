@@ -8,6 +8,10 @@ export const TransactionsList: React.FC = () => {
   const [page, setPage] = useState(1);
   const { data, isFetching } = useGetTransactionsListQuery(page);
   // TODO: add filtering and sorting
+  // TODO: add initial loading
+  // TODO: add List Empty component
+  // TODO: add list footer component
+  // TODO: use Animated.View to animate entering and leaving
 
   return (
     <View>

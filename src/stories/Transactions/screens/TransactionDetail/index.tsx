@@ -1,8 +1,9 @@
 import {
+  TransactionStackNavigationParams,
   TransactionStackRouteParams,
   TransactionStackRoutes,
 } from '@navigators';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useGetTransactionDetailsQuery } from '@store';
 import { Colors } from '@theme';
 import React, { useRef } from 'react';
@@ -33,8 +34,12 @@ import {
 type TransactionDetailRoute =
   TransactionStackRouteParams<TransactionStackRoutes.TransactionDetails>;
 
+type TransactionDetailNavigation =
+  TransactionStackNavigationParams<TransactionStackRoutes.TransactionDetails>;
+
 export const TransactionDetail: React.FC = () => {
   const { params } = useRoute<TransactionDetailRoute>();
+  const { navigate } = useNavigation<TransactionDetailNavigation>();
   const { height } = useWindowDimensions();
   const mapRef = useRef<MapView>(null);
   const { data, isFetching, isError } = useGetTransactionDetailsQuery(
@@ -136,6 +141,11 @@ export const TransactionDetail: React.FC = () => {
                 <TransactionButton
                   Icon={FileText}
                   label={t('transactionDetail.seeReceipt')}
+                  onPress={() =>
+                    navigate(TransactionStackRoutes.TransactionReceipt, {
+                      receiptUrl: data.ReceiptImage,
+                    })
+                  }
                 />
               </View>
             </Animated.View>

@@ -7,6 +7,9 @@ export type TransactionStackParamsList = {
   [TransactionStackRoutes.TransactionDetails]: {
     id: number;
   };
+  [TransactionStackRoutes.TransactionReceipt]: {
+    receiptUrl: string | null;
+  };
 };
 
 export type TransactionStackNavigationParams<T extends TransactionStackRoutes> =

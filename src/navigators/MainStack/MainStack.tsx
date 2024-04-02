@@ -9,6 +9,7 @@ import { TabNavigator } from '../TabNavigator';
 const Stack = createStackNavigator<MainStackParamList>();
 
 export const MainStack: React.FC = () => {
+  // TODO: add a SplashScreen to decide wheter to show AuthStack or TabNavigator
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name={MainStackRoutes.AuthStack} component={AuthStack} />

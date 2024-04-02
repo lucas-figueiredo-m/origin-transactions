@@ -22,6 +22,8 @@ export const SignIn: React.FC = () => {
     navigate(AuthStackRoutes.SignUp);
   };
 
+  // TODO: add a checkbox to keep user connected and persist user session
+
   return (
     <SafeAreaView style={styles.root}>
       <Logo width={200} height={200} />

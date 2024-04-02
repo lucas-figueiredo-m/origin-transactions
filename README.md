@@ -15,8 +15,8 @@ Your task is to create a simple mobile application with the following features:
 
 ### **2. Transactions Listing Page**
 
-- [ ] Display a list of transactions associated with the logged-in user. Each list item should have a summary of the transaction (e.g., date, amount, type).
-  - [ ] Required: pull to refresh
+- [x] Display a list of transactions associated with the logged-in user. Each list item should have a summary of the transaction (e.g., date, amount, type).
+  - [x] Required: pull to refresh
   - [ ] Optional: sorting, filtering (client side)
 
 ### **3. Transaction Details Page**

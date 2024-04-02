@@ -27,4 +27,9 @@ export default {
     transactionsList: 'Transactions',
     profile: 'Profile',
   },
+  transactions: {
+    transactionCard: {
+      on: 'on',
+    },
+  },
 };

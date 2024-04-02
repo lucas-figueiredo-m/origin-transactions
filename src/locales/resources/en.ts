@@ -32,4 +32,12 @@ export default {
       on: 'on',
     },
   },
+  transactionDetail: {
+    error: 'Failed to load transaction',
+    amount: 'Amount',
+    category: 'Category',
+    transactionType: 'Transaction Type',
+    attachGps: 'Attach GPS coordinates to transaction',
+    seeReceipt: 'See Receipt',
+  },
 };

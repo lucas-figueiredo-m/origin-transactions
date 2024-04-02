@@ -8,7 +8,7 @@ export const transactionsApi = createApi({
     baseUrl:
       'https://tque3jpn1e.execute-api.us-east-1.amazonaws.com/mobile-tha/transactions',
   }),
-  tagTypes: ['Transactions'],
+  tagTypes: ['Transactions', 'TransactionDetail'],
   endpoints: builder => ({
     getTransactionsList: builder.query<Transaction[], number>({
       providesTags: ['Transactions'],
@@ -32,9 +32,20 @@ export const transactionsApi = createApi({
         return currentArg !== previousArg;
       },
     }),
+    getTransactionDetails: builder.query<Transaction, number>({
+      query: id => {
+        return {
+          url: `/${id}`,
+        };
+      },
+      providesTags: (res, err, arg) => {
+        return [{ type: 'TransactionDetail', id: arg }];
+      },
+    }),
   }),
 });
 
-export const { useGetTransactionsListQuery } = transactionsApi;
+export const { useGetTransactionsListQuery, useGetTransactionDetailsQuery } =
+  transactionsApi;
 
 export const transactionsSelector = (state: RootState) => state.transactions;

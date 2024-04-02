@@ -10,8 +10,8 @@ export type AuthStackParamList = {
 
 export type AuthStackNavigationParams<T extends AuthStackRoutes> =
   CompositeNavigationProp<
-    StackNavigationProp<AuthStackParamList, T>,
-    MainStackNavigationParams<MainStackRoutes.AuthStack>
+    MainStackNavigationParams<MainStackRoutes.AuthStack>, // First goes the parent navigator
+    StackNavigationProp<AuthStackParamList, T> // Then the child navigator and specified screen
   >;
 
 export type AuthStackRouteParams<T extends AuthStackRoutes> = RouteProp<

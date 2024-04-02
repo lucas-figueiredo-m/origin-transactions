@@ -4,6 +4,7 @@ import { MainStackParamList } from './MainStack.type';
 import { MainStackRoutes } from './MainStack.enum';
 import { AuthStack } from '../AuthStack';
 import { screenOptions } from './config';
+import { TabNavigator } from '../TabNavigator';
 
 const Stack = createStackNavigator<MainStackParamList>();
 
@@ -11,6 +12,10 @@ export const MainStack: React.FC = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name={MainStackRoutes.AuthStack} component={AuthStack} />
+      <Stack.Screen
+        name={MainStackRoutes.TabNavigator}
+        component={TabNavigator}
+      />
     </Stack.Navigator>
   );
 };

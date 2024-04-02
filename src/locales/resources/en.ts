@@ -23,4 +23,13 @@ export default {
     passwordsDontMatch: 'Passwords do not match',
     title: 'Origin Transactions',
   },
+  tabNavigator: {
+    transactionsList: 'Transactions',
+    profile: 'Profile',
+  },
+  transactions: {
+    transactionCard: {
+      on: 'on',
+    },
+  },
 };

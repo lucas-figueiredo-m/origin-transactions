@@ -4,6 +4,7 @@ import { FlatList, View } from 'react-native';
 import { TransactionCard, TransactionCardSeparator } from './components';
 
 export const TransactionsList: React.FC = () => {
+  // TODO: handle last page
   const [page, setPage] = useState(1);
   const { data, isFetching } = useGetTransactionsListQuery(page);
 

@@ -7,6 +7,7 @@ export const TransactionsList: React.FC = () => {
   // TODO: handle last page
   const [page, setPage] = useState(1);
   const { data, isFetching } = useGetTransactionsListQuery(page);
+  // TODO: add filtering and sorting
 
   return (
     <View>

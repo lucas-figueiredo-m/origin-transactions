@@ -23,7 +23,6 @@ type TransactionListNavigation =
 
 export const TransactionsList: React.FC = () => {
   const [page, setPage] = useState(1);
-  const [isFiltering, setFiltering] = useState(false);
   const { data, isFetching, isLoading, isError } =
     useGetTransactionsListQuery(page);
   const { navigate } = useNavigation<TransactionListNavigation>();
@@ -49,15 +48,6 @@ export const TransactionsList: React.FC = () => {
     return <ListFooterComponent isFetching={isFetching} />;
   }, [isFetching]);
 
-  const ListHeader = useMemo(() => {
-    return (
-      <ListHeaderComponent
-        isFilterActive={isFiltering}
-        onFilterPress={() => setFiltering(prev => !prev)}
-      />
-    );
-  }, [isFiltering]);
-
   return (
     <Screen
       loading={isLoading}
@@ -71,7 +61,7 @@ export const TransactionsList: React.FC = () => {
         stickyHeaderIndices={[0]}
         ListEmptyComponent={ListEmptyComponent}
         ListFooterComponent={ListFooter}
-        ListHeaderComponent={ListHeader}
+        ListHeaderComponent={ListHeaderComponent}
         ItemSeparatorComponent={TransactionCardSeparator}
         showsVerticalScrollIndicator={false}
         onEndReached={() => setPage(page + 1)}

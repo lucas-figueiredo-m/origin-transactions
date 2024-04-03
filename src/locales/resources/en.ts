@@ -34,6 +34,8 @@ export default {
     transactionCard: {
       on: 'on',
     },
+    filterActive: 'Filtering',
+    filter: 'Filter',
   },
   transactionStack: {
     transactionDetail: 'Transaction Detail',

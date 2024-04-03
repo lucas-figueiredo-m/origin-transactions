@@ -16,12 +16,14 @@ import {
 } from '@navigators';
 import { Screen } from '@components';
 import { useTranslation } from '@hooks';
+import { ListHeaderComponent } from './components/ListHeaderComponent';
 
 type TransactionListNavigation =
   TabNavigationParams<TabRoutes.TransactionsList>;
 
 export const TransactionsList: React.FC = () => {
   const [page, setPage] = useState(1);
+  const [isFiltering, setFiltering] = useState(false);
   const { data, isFetching, isLoading, isError } =
     useGetTransactionsListQuery(page);
   const { navigate } = useNavigation<TransactionListNavigation>();
@@ -47,6 +49,15 @@ export const TransactionsList: React.FC = () => {
     return <ListFooterComponent isFetching={isFetching} />;
   }, [isFetching]);
 
+  const ListHeader = useMemo(() => {
+    return (
+      <ListHeaderComponent
+        isFilterActive={isFiltering}
+        onFilterPress={() => setFiltering(prev => !prev)}
+      />
+    );
+  }, [isFiltering]);
+
   return (
     <Screen
       loading={isLoading}
@@ -57,9 +68,12 @@ export const TransactionsList: React.FC = () => {
         data={data || ([] as Transaction[])}
         keyExtractor={item => item.Id.toString()}
         renderItem={renderItem}
+        stickyHeaderIndices={[0]}
         ListEmptyComponent={ListEmptyComponent}
         ListFooterComponent={ListFooter}
+        ListHeaderComponent={ListHeader}
         ItemSeparatorComponent={TransactionCardSeparator}
+        showsVerticalScrollIndicator={false}
         onEndReached={() => setPage(page + 1)}
         onRefresh={() => setPage(1)}
         refreshing={isFetching}

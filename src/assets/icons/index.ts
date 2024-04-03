@@ -8,6 +8,7 @@ import FileText from './file-text.svg';
 import Compass from './compass.svg';
 import MapPin from './map-pin.svg';
 import Map from './map.svg';
+import Filter from './filter.svg';
 
 export {
   Logo,
@@ -20,4 +21,5 @@ export {
   FileText,
   MapPin,
   Map,
+  Filter,
 };

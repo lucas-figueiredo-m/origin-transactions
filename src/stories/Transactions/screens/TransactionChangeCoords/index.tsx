@@ -3,8 +3,17 @@ import { View } from 'react-native';
 import { styles } from './styles';
 import { Compass, Map } from '@assets/icons';
 import { CoordPickOption } from './components';
+import {
+  TransactionStackNavigationParams,
+  TransactionStackRoutes,
+} from '@navigators';
+import { useNavigation } from '@react-navigation/native';
+
+type TransactionChangeCoordsNavigation =
+  TransactionStackNavigationParams<TransactionStackRoutes.TransactionChangeCoords>;
 
 export const TransactionChangeCoords: React.FC = () => {
+  const { navigate } = useNavigation<TransactionChangeCoordsNavigation>();
   return (
     <View style={styles.root}>
       <CoordPickOption
@@ -14,7 +23,7 @@ export const TransactionChangeCoords: React.FC = () => {
       />
       <View style={styles.separator} />
       <CoordPickOption
-        onPress={() => null}
+        onPress={() => navigate(TransactionStackRoutes.TransactionMapPicker)}
         label={'transactionChangeCoords.pickFromMap'}
         Icon={Map}
       />

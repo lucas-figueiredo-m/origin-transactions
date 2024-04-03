@@ -58,4 +58,14 @@ export default {
       'You have previously blocked this permission. Would you like to open settings to enable it?',
     requesting: 'Permission is being requested. Please, wait',
   },
+  usePermissions: {
+    attention: 'Attention',
+    openSettings: 'Open Settings',
+    cancel: 'Cancel',
+  },
+  transactionMapPicker: {
+    error: 'Error',
+    errorMessage:
+      'An error happened trying to update your GPS coords. Please try again.',
+  },
 };

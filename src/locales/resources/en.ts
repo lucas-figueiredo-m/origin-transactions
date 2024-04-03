@@ -32,6 +32,12 @@ export default {
       on: 'on',
     },
   },
+  transactionStack: {
+    transactionDetail: 'Transaction Detail',
+    transactionChangeCoords: 'Change Location',
+    transactionReceipt: 'Transaction Receipt',
+    transactionMapPicker: 'Map Picker',
+  },
   transactionDetail: {
     error: 'Failed to load transaction',
     amount: 'Amount',

@@ -1,7 +1,12 @@
 import { Transaction, useGetTransactionsListQuery } from '@store';
-import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
-import { TransactionCard, TransactionCardSeparator } from './components';
+import React, { useMemo, useState } from 'react';
+import { FlatList, ListRenderItem } from 'react-native';
+import {
+  ListEmptyComponent,
+  ListFooterComponent,
+  TransactionCard,
+  TransactionCardSeparator,
+} from './components';
 import { useNavigation } from '@react-navigation/native';
 import {
   MainStackRoutes,
@@ -9,20 +14,20 @@ import {
   TabRoutes,
   TransactionStackRoutes,
 } from '@navigators';
+import { Screen } from '@components';
+import { useTranslation } from '@hooks';
+import { ListHeaderComponent } from './components/ListHeaderComponent';
 
 type TransactionListNavigation =
   TabNavigationParams<TabRoutes.TransactionsList>;
 
 export const TransactionsList: React.FC = () => {
-  // TODO: handle last page
   const [page, setPage] = useState(1);
-  const { data, isFetching } = useGetTransactionsListQuery(page);
+  const { data, isFetching, isLoading, isError } =
+    useGetTransactionsListQuery(page);
   const { navigate } = useNavigation<TransactionListNavigation>();
+  const t = useTranslation();
   // TODO: add filtering and sorting
-  // TODO: add initial loading
-  // TODO: add List Empty component
-  // TODO: add list footer component
-  // TODO: use Animated.View to animate entering and leaving
 
   const onCardPress = (id: number) => {
     navigate(MainStackRoutes.TransactionStack, {
@@ -31,20 +36,39 @@ export const TransactionsList: React.FC = () => {
     });
   };
 
+  const renderItem: ListRenderItem<Transaction> = ({ item, index }) => (
+    <TransactionCard
+      data={item}
+      index={index}
+      onPress={() => onCardPress(item.Id)}
+    />
+  );
+
+  const ListFooter = useMemo(() => {
+    return <ListFooterComponent isFetching={isFetching} />;
+  }, [isFetching]);
+
   return (
-    <View>
+    <Screen
+      loading={isLoading}
+      isError={isError}
+      errorMessage={t('transactions.error')}
+    >
       <FlatList
         data={data || ([] as Transaction[])}
         keyExtractor={item => item.Id.toString()}
-        renderItem={({ item }) => (
-          <TransactionCard data={item} onPress={() => onCardPress(item.Id)} />
-        )}
+        renderItem={renderItem}
+        stickyHeaderIndices={[0]}
+        ListEmptyComponent={ListEmptyComponent}
+        ListFooterComponent={ListFooter}
+        ListHeaderComponent={ListHeaderComponent}
         ItemSeparatorComponent={TransactionCardSeparator}
+        showsVerticalScrollIndicator={false}
         onEndReached={() => setPage(page + 1)}
         onRefresh={() => setPage(1)}
         refreshing={isFetching}
         onEndReachedThreshold={0.2}
       />
-    </View>
+    </Screen>
   );
 };

@@ -30,6 +30,11 @@ export const transactionsApi = createApi({
         if (arg.arg === 1) {
           return incoming;
         }
+
+        if (incoming.length === 0) {
+          return current;
+        }
+
         return [...current, ...incoming];
       },
       forceRefetch: ({ currentArg, previousArg }) => {

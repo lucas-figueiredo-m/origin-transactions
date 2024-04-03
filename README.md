@@ -35,7 +35,7 @@ Your task is to create a simple mobile application with the following features:
 
 - [x] The application should be developed using React Native.
 - [x] Ensure the app is compatible with both iOS and Android.
-- [x] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
+- [ ] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
 - [x] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
 - [ ] Include a README file with clear instructions on how to set up and run your application.
 

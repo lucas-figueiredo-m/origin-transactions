@@ -43,8 +43,12 @@ export const TransactionsList: React.FC = () => {
       <FlatList
         data={data || ([] as Transaction[])}
         keyExtractor={item => item.Id.toString()}
-        renderItem={({ item }) => (
-          <TransactionCard data={item} onPress={() => onCardPress(item.Id)} />
+        renderItem={({ item, index }) => (
+          <TransactionCard
+            data={item}
+            index={index}
+            onPress={() => onCardPress(item.Id)}
+          />
         )}
         ItemSeparatorComponent={TransactionCardSeparator}
         onEndReached={() => setPage(page + 1)}

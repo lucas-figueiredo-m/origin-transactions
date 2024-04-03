@@ -14,7 +14,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { Compass, FileText } from '@assets/icons';
+import { FileText, MapPin } from '@assets/icons';
 import { StringUtils } from '@utils';
 import { format } from 'date-fns';
 import { useTranslation } from '@hooks';
@@ -126,8 +126,11 @@ export const TransactionDetail: React.FC = () => {
               />
 
               <TransactionButton
-                Icon={Compass}
+                Icon={MapPin}
                 label={t('transactionDetail.attachGps')}
+                onPress={() =>
+                  navigate(TransactionStackRoutes.TransactionChangeCoords)
+                }
               />
 
               <TransactionButton

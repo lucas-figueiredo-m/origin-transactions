@@ -19,3 +19,9 @@ export type Transaction = {
 };
 
 export type TransactionType = 'invoice' | 'deposit' | 'payment' | 'withdrawal';
+
+export type TransactionChangeCoordinates = {
+  id: number;
+  Lat: number;
+  Lon: number;
+};

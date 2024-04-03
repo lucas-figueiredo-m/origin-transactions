@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { Transaction, TransactionsQuery } from '.';
+import {
+  Transaction,
+  TransactionChangeCoordinates,
+  TransactionsQuery,
+} from '.';
 
 export const transactionsApi = createApi({
   reducerPath: 'transactions',
@@ -39,13 +43,34 @@ export const transactionsApi = createApi({
         };
       },
       providesTags: (res, err, arg) => {
-        return [{ type: 'TransactionDetail', id: arg }];
+        return [
+          { type: 'TransactionDetail', id: arg },
+          { type: 'Transactions' },
+        ];
       },
+    }),
+    changeTransactionCoordinates: builder.mutation<
+      void,
+      TransactionChangeCoordinates
+    >({
+      query: ({ id, Lat, Lon }) => {
+        return {
+          url: `/${id}/coordinates`,
+          method: 'POST',
+          body: { Lat, Lon },
+        };
+      },
+      invalidatesTags: (req, res, arg) => [
+        { type: 'TransactionDetail', id: arg.id },
+      ],
     }),
   }),
 });
 
-export const { useGetTransactionsListQuery, useGetTransactionDetailsQuery } =
-  transactionsApi;
+export const {
+  useGetTransactionsListQuery,
+  useGetTransactionDetailsQuery,
+  useChangeTransactionCoordinatesMutation,
+} = transactionsApi;
 
 export const transactionsSelector = (state: RootState) => state.transactions;

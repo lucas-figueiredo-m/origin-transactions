@@ -21,10 +21,10 @@ Your task is to create a simple mobile application with the following features:
 
 ### **3. Transaction Details Page**
 
-- [ ] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
+- [x] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
   - [ ] **Required**: Allow users to attach the current GPS latitude and longitude coordinates to the transaction.
   - [ ] **Optional**: Provide an option to attach a receipt to the transaction.
-  - Optional: Display location on the map
+  - [x] **Optional**: Display location on the map
 
 ### **4. App State Management Considerations**
 

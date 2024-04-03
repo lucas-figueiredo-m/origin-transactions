@@ -37,7 +37,11 @@ export default {
     amount: 'Amount',
     category: 'Category',
     transactionType: 'Transaction Type',
-    attachGps: 'Attach GPS coordinates to transaction',
+    attachGps: "Change transaction's location",
     seeReceipt: 'See Receipt',
+  },
+  transactionChangeCoords: {
+    useGpsCoords: 'Use current GPS coordinates',
+    pickFromMap: 'Pick from map',
   },
 };

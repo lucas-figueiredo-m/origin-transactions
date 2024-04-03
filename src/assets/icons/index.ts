@@ -6,6 +6,8 @@ import ChevronRight from './chevron-right.svg';
 import ChevronUp from './chevron-up.svg';
 import FileText from './file-text.svg';
 import Compass from './compass.svg';
+import MapPin from './map-pin.svg';
+import Map from './map.svg';
 
 export {
   Logo,
@@ -16,4 +18,6 @@ export {
   ChevronUp,
   Compass,
   FileText,
+  MapPin,
+  Map,
 };

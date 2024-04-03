@@ -21,22 +21,22 @@ Your task is to create a simple mobile application with the following features:
 
 ### **3. Transaction Details Page**
 
-- [ ] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
-  - [ ] **Required**: Allow users to attach the current GPS latitude and longitude coordinates to the transaction.
+- [x] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
+  - [x] **Required**: Allow users to attach the current GPS latitude and longitude coordinates to the transaction.
   - [ ] **Optional**: Provide an option to attach a receipt to the transaction.
-  - Optional: Display location on the map
+  - [x] **Optional**: Display location on the map
 
 ### **4. App State Management Considerations**
 
-- [ ] Ensure that the application handles the app state effectively, especially during typical mobile interactions such as using the power button or home button. The app should maintain a consistent state and user experience.
+- [x] Ensure that the application handles the app state effectively, especially during typical mobile interactions such as using the power button or home button. The app should maintain a consistent state and user experience.
 - [ ] Handle offline mode
 
 ## **Technical Requirements**
 
 - [x] The application should be developed using React Native.
-- [ ] Ensure the app is compatible with both iOS and Android.
+- [x] Ensure the app is compatible with both iOS and Android.
 - [x] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
-- [ ] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
+- [x] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
 - [ ] Include a README file with clear instructions on how to set up and run your application.
 
 ## Available Resources

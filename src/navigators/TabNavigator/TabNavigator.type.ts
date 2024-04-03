@@ -9,7 +9,7 @@ export type TabNavigatorParamList = {
 };
 
 export type TabNavigationParams<T extends TabRoutes> = CompositeNavigationProp<
-  MainStackNavigationParams<MainStackRoutes.AuthStack>,
+  MainStackNavigationParams<MainStackRoutes.TabNavigator>,
   BottomTabNavigationProp<TabNavigatorParamList, T>
 >;
 

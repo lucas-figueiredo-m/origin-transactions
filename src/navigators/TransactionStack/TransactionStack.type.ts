@@ -13,7 +13,9 @@ export type TransactionStackParamsList = {
   [TransactionStackRoutes.TransactionChangeCoords]: {
     id: number;
   };
-  [TransactionStackRoutes.TransactionMapPicker]: undefined;
+  [TransactionStackRoutes.TransactionMapPicker]: {
+    id: number;
+  };
 };
 
 export type TransactionStackNavigationParams<T extends TransactionStackRoutes> =

@@ -5,15 +5,8 @@ import {
 } from '@navigators';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useGetTransactionDetailsQuery } from '@store';
-import { Colors } from '@theme';
 import React, { useRef } from 'react';
-import {
-  ActivityIndicator,
-  Text,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
-} from 'react-native';
+import { TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
 import { styles } from './styles';
 import Animated, {
@@ -30,6 +23,7 @@ import {
   TransactionHeader,
   TransactionText,
 } from './components';
+import { Screen } from '@components';
 
 type TransactionDetailRoute =
   TransactionStackRouteParams<TransactionStackRoutes.TransactionDetails>;
@@ -79,79 +73,76 @@ export const TransactionDetail: React.FC = () => {
   };
 
   return (
-    <View style={styles.root}>
-      {isFetching ? (
-        <ActivityIndicator size={'large'} color={Colors.Primary} />
-      ) : isError ? (
+    <Screen
+      loading={isFetching}
+      isError={isError}
+      errorMessage={'transactionDetail.error'}
+    >
+      {data && (
         <View>
-          <Text>{t('transactionDetail.error')}</Text>
-        </View>
-      ) : (
-        data && (
-          <View>
-            <TouchableOpacity style={styles.map} onPress={onMapPress}>
-              <MapView
-                ref={mapRef}
-                initialRegion={initialRegion}
-                style={styles.map}>
-                <Marker
-                  coordinate={{ latitude: data.Lat, longitude: data.Lon }}
-                />
-              </MapView>
-            </TouchableOpacity>
-            <Animated.View style={[styles.content, animatedStyle]}>
-              <TransactionHeader
-                translation={translation}
-                onChevronPress={onChevronPress}
+          <TouchableOpacity style={styles.map} onPress={onMapPress}>
+            <MapView
+              ref={mapRef}
+              initialRegion={initialRegion}
+              style={styles.map}
+            >
+              <Marker
+                coordinate={{ latitude: data.Lat, longitude: data.Lon }}
               />
-              <View style={styles.textsContainer}>
-                <TransactionText
-                  title={data.Vendor}
-                  content={format(data.Date, 'MMM do, yyyy')}
-                  titleStyle={styles.vendor}
-                  contentStyle={styles.date}
-                />
+            </MapView>
+          </TouchableOpacity>
+          <Animated.View style={[styles.content, animatedStyle]}>
+            <TransactionHeader
+              translation={translation}
+              onChevronPress={onChevronPress}
+            />
+            <View style={styles.textsContainer}>
+              <TransactionText
+                title={data.Vendor}
+                content={format(data.Date, 'MMM do, yyyy')}
+                titleStyle={styles.vendor}
+                contentStyle={styles.date}
+              />
 
-                <TransactionText
-                  title={'transactionDetail.amount'}
-                  content={`U$ ${data.Amount}`}
-                  titleStyle={styles.sectionTitle}
-                  contentStyle={styles.amount}
-                />
+              <TransactionText
+                title={'transactionDetail.amount'}
+                content={`U$ ${data.Amount}`}
+                titleStyle={styles.sectionTitle}
+                contentStyle={styles.amount}
+              />
 
-                <TransactionText
-                  title={'transactionDetail.category'}
-                  content={StringUtils.toCapitalizeWords(data.Category)}
-                  titleStyle={styles.sectionTitle}
-                  contentStyle={styles.category}
-                />
+              <TransactionText
+                title={'transactionDetail.category'}
+                content={StringUtils.toCapitalizeWords(data.Category)}
+                titleStyle={styles.sectionTitle}
+                contentStyle={styles.category}
+              />
 
-                <TransactionText
-                  title={'transactionDetail.transactionType'}
-                  content={StringUtils.toCapitalizeWords(data.Type)}
-                  titleStyle={styles.sectionTitle}
-                  contentStyle={styles.type}
-                />
+              <TransactionText
+                title={'transactionDetail.transactionType'}
+                content={StringUtils.toCapitalizeWords(data.Type)}
+                titleStyle={styles.sectionTitle}
+                contentStyle={styles.type}
+              />
 
-                <TransactionButton
-                  Icon={Compass}
-                  label={t('transactionDetail.attachGps')}
-                />
+              <TransactionButton
+                Icon={Compass}
+                label={t('transactionDetail.attachGps')}
+              />
 
-                <TransactionButton
-                  Icon={FileText}
-                  label={t('transactionDetail.seeReceipt')}
-                  onPress={() =>
-                    navigate(TransactionStackRoutes.TransactionReceipt, {
-                      receiptUrl: data.ReceiptImage,
-                    })
-                  }
-                />
-              </View>
-            </Animated.View>
-          </View>
-        )
+              <TransactionButton
+                Icon={FileText}
+                label={t('transactionDetail.seeReceipt')}
+                onPress={() =>
+                  navigate(TransactionStackRoutes.TransactionReceipt, {
+                    receiptUrl: data.ReceiptImage,
+                  })
+                }
+              />
+            </View>
+          </Animated.View>
+        </View>
       )}
-    </View>
+    </Screen>
   );
 };

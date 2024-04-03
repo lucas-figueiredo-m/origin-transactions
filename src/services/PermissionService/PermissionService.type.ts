@@ -4,6 +4,7 @@ import {
   PermissionStatus,
 } from 'react-native-permissions';
 import { Platform } from 'react-native';
+import { Scopes } from './PermissionService.enum';
 
 export type MobilePlatforms = Exclude<
   typeof Platform.OS,
@@ -25,8 +26,6 @@ export type PermissionResult =
       message: string;
       askOpenSettings: boolean;
     };
-
-export type Scopes = 'Camera' | 'GPS' | 'IMAGE';
 
 export type PermissionScopeType = {
   ios: {

@@ -5,8 +5,9 @@ import {
   type Permission as DevicePermission,
   RESULTS,
 } from 'react-native-permissions';
-import { PermissionResult, Scopes } from './PermissionService.type';
+import { PermissionResult } from './PermissionService.type';
 import { MobileDevice, PermissionScopes } from './PermissionService.constant';
+import { Scopes } from './PermissionService.enum';
 
 export class PermissionService {
   private static status(

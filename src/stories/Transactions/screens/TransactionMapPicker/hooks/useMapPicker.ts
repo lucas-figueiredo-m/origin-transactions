@@ -1,18 +1,22 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Alert, SafeAreaView } from 'react-native';
-import MapView, { LatLng, Marker, Region } from 'react-native-maps';
-import { styles } from './styles';
 import { usePermissions, useTranslation } from '@hooks';
-import { Scopes } from '@services';
-import Geolocation from '@react-native-community/geolocation';
-import { Button } from '@components';
-import { useChangeTransactionCoordinatesMutation } from '@store';
 import {
   TransactionStackNavigationParams,
-  TransactionStackRouteParams,
   TransactionStackRoutes,
+  TransactionStackRouteParams,
 } from '@navigators';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { Scopes } from '@services';
+import { useChangeTransactionCoordinatesMutation } from '@store';
+import { useEffect, useMemo, useState } from 'react';
+import { Alert } from 'react-native';
+import { LatLng, Region } from 'react-native-maps';
+
+type TransactionMapPickerNavigation =
+  TransactionStackNavigationParams<TransactionStackRoutes.TransactionMapPicker>;
+
+type TransactionMapPickerRoute =
+  TransactionStackRouteParams<TransactionStackRoutes.TransactionMapPicker>;
 
 const initialRegion: Region = {
   latitude: 37.78825,
@@ -21,14 +25,7 @@ const initialRegion: Region = {
   longitudeDelta: 0.0421,
 };
 
-type TransactionMapPickerNavigation =
-  TransactionStackNavigationParams<TransactionStackRoutes.TransactionMapPicker>;
-
-type TransactionMapPickerRoute =
-  TransactionStackRouteParams<TransactionStackRoutes.TransactionMapPicker>;
-
-export const TransactionMapPicker: React.FC = () => {
-  const mapRef = useRef<MapView>(null);
+export const useMapPicker = () => {
   const [granted, request] = usePermissions(Scopes.GPS);
   const [area, setArea] = useState<Region>(initialRegion);
   const [mutate, { isLoading }] = useChangeTransactionCoordinatesMutation();
@@ -78,23 +75,11 @@ export const TransactionMapPicker: React.FC = () => {
     [area],
   );
 
-  return (
-    <SafeAreaView style={styles.root}>
-      <MapView
-        ref={mapRef}
-        region={area}
-        onRegionChange={onRegionChange}
-        style={styles.map}
-      >
-        <Marker coordinate={markerLocation} />
-      </MapView>
-      <SafeAreaView style={styles.buttonContainer}>
-        <Button.Large
-          loading={isLoading}
-          label={'Save'}
-          onPress={onSavePress}
-        />
-      </SafeAreaView>
-    </SafeAreaView>
-  );
+  return {
+    area,
+    isLoading,
+    onRegionChange,
+    onSavePress,
+    markerLocation,
+  };
 };

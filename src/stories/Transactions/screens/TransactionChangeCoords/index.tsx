@@ -32,7 +32,11 @@ export const TransactionChangeCoords: React.FC = () => {
       />
       <View style={styles.separator} />
       <CoordPickOption
-        onPress={() => navigate(TransactionStackRoutes.TransactionMapPicker)}
+        onPress={() =>
+          navigate(TransactionStackRoutes.TransactionMapPicker, {
+            id: params.id,
+          })
+        }
         label={'transactionChangeCoords.pickFromMap'}
         Icon={Map}
       />

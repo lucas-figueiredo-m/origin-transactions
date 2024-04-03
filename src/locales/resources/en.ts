@@ -29,6 +29,8 @@ export default {
   },
   transactions: {
     error: 'Failed to load transactions',
+    empty: 'No transactions found',
+    noMorePages: 'No more transactions to show',
     transactionCard: {
       on: 'on',
     },

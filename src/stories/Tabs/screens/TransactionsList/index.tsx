@@ -1,7 +1,12 @@
 import { Transaction, useGetTransactionsListQuery } from '@store';
-import React, { useState } from 'react';
-import { FlatList } from 'react-native';
-import { TransactionCard, TransactionCardSeparator } from './components';
+import React, { useMemo, useState } from 'react';
+import { FlatList, ListRenderItem } from 'react-native';
+import {
+  ListEmptyComponent,
+  ListFooterComponent,
+  TransactionCard,
+  TransactionCardSeparator,
+} from './components';
 import { useNavigation } from '@react-navigation/native';
 import {
   MainStackRoutes,
@@ -16,16 +21,12 @@ type TransactionListNavigation =
   TabNavigationParams<TabRoutes.TransactionsList>;
 
 export const TransactionsList: React.FC = () => {
-  // TODO: handle last page
   const [page, setPage] = useState(1);
   const { data, isFetching, isLoading, isError } =
     useGetTransactionsListQuery(page);
   const { navigate } = useNavigation<TransactionListNavigation>();
   const t = useTranslation();
   // TODO: add filtering and sorting
-  // TODO: add List Empty component
-  // TODO: add list footer component
-  // TODO: use Animated.View to animate entering and leaving
 
   const onCardPress = (id: number) => {
     navigate(MainStackRoutes.TransactionStack, {
@@ -33,6 +34,18 @@ export const TransactionsList: React.FC = () => {
       params: { id },
     });
   };
+
+  const renderItem: ListRenderItem<Transaction> = ({ item, index }) => (
+    <TransactionCard
+      data={item}
+      index={index}
+      onPress={() => onCardPress(item.Id)}
+    />
+  );
+
+  const ListFooter = useMemo(() => {
+    return <ListFooterComponent isFetching={isFetching} />;
+  }, [isFetching]);
 
   return (
     <Screen
@@ -43,13 +56,9 @@ export const TransactionsList: React.FC = () => {
       <FlatList
         data={data || ([] as Transaction[])}
         keyExtractor={item => item.Id.toString()}
-        renderItem={({ item, index }) => (
-          <TransactionCard
-            data={item}
-            index={index}
-            onPress={() => onCardPress(item.Id)}
-          />
-        )}
+        renderItem={renderItem}
+        ListEmptyComponent={ListEmptyComponent}
+        ListFooterComponent={ListFooter}
         ItemSeparatorComponent={TransactionCardSeparator}
         onEndReached={() => setPage(page + 1)}
         onRefresh={() => setPage(1)}

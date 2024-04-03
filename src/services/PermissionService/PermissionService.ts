@@ -8,7 +8,7 @@ import {
 import { PermissionResult, Scopes } from './PermissionService.type';
 import { MobileDevice, PermissionScopes } from './PermissionService.constant';
 
-export class Permission {
+export class PermissionService {
   private static status(
     status: PermissionStatus,
     isRequesting: boolean,

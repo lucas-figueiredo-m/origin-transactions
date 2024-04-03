@@ -22,11 +22,6 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
 
-  chevronContainer: {
-    width: '100%',
-    alignItems: 'flex-end',
-  },
-
   vendor: {
     fontSize: 20,
     fontWeight: 'bold',

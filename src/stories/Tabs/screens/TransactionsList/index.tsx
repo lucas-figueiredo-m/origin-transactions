@@ -1,6 +1,6 @@
 import { Transaction, useGetTransactionsListQuery } from '@store';
 import React, { useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 import { TransactionCard, TransactionCardSeparator } from './components';
 import { useNavigation } from '@react-navigation/native';
 import {
@@ -9,6 +9,8 @@ import {
   TabRoutes,
   TransactionStackRoutes,
 } from '@navigators';
+import { Screen } from '@components';
+import { useTranslation } from '@hooks';
 
 type TransactionListNavigation =
   TabNavigationParams<TabRoutes.TransactionsList>;
@@ -16,10 +18,11 @@ type TransactionListNavigation =
 export const TransactionsList: React.FC = () => {
   // TODO: handle last page
   const [page, setPage] = useState(1);
-  const { data, isFetching } = useGetTransactionsListQuery(page);
+  const { data, isFetching, isLoading, isError } =
+    useGetTransactionsListQuery(page);
   const { navigate } = useNavigation<TransactionListNavigation>();
+  const t = useTranslation();
   // TODO: add filtering and sorting
-  // TODO: add initial loading
   // TODO: add List Empty component
   // TODO: add list footer component
   // TODO: use Animated.View to animate entering and leaving
@@ -32,7 +35,11 @@ export const TransactionsList: React.FC = () => {
   };
 
   return (
-    <View>
+    <Screen
+      loading={isLoading}
+      isError={isError}
+      errorMessage={t('transactions.error')}
+    >
       <FlatList
         data={data || ([] as Transaction[])}
         keyExtractor={item => item.Id.toString()}
@@ -45,6 +52,6 @@ export const TransactionsList: React.FC = () => {
         refreshing={isFetching}
         onEndReachedThreshold={0.2}
       />
-    </View>
+    </Screen>
   );
 };

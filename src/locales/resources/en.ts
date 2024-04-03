@@ -28,6 +28,7 @@ export default {
     profile: 'Profile',
   },
   transactions: {
+    error: 'Failed to load transactions',
     transactionCard: {
       on: 'on',
     },

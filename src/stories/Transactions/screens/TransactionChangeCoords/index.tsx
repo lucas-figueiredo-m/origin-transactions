@@ -5,19 +5,28 @@ import { Compass, Map } from '@assets/icons';
 import { CoordPickOption } from './components';
 import {
   TransactionStackNavigationParams,
+  TransactionStackRouteParams,
   TransactionStackRoutes,
 } from '@navigators';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+
+import { useGpsCoords } from './hooks';
 
 type TransactionChangeCoordsNavigation =
   TransactionStackNavigationParams<TransactionStackRoutes.TransactionChangeCoords>;
 
+type TransactionChangeCoordsRoute =
+  TransactionStackRouteParams<TransactionStackRoutes.TransactionChangeCoords>;
+
 export const TransactionChangeCoords: React.FC = () => {
   const { navigate } = useNavigation<TransactionChangeCoordsNavigation>();
+  const { params } = useRoute<TransactionChangeCoordsRoute>();
+  const { onGpsPress } = useGpsCoords(params.id);
+
   return (
     <View style={styles.root}>
       <CoordPickOption
-        onPress={() => null}
+        onPress={onGpsPress}
         label={'transactionChangeCoords.useGpsCoords'}
         Icon={Compass}
       />

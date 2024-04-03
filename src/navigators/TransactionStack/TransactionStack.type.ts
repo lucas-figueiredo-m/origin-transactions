@@ -10,7 +10,9 @@ export type TransactionStackParamsList = {
   [TransactionStackRoutes.TransactionReceipt]: {
     receiptUrl: string | null;
   };
-  [TransactionStackRoutes.TransactionChangeCoords]: undefined;
+  [TransactionStackRoutes.TransactionChangeCoords]: {
+    id: number;
+  };
   [TransactionStackRoutes.TransactionMapPicker]: undefined;
 };
 

@@ -129,7 +129,9 @@ export const TransactionDetail: React.FC = () => {
                 Icon={MapPin}
                 label={t('transactionDetail.attachGps')}
                 onPress={() =>
-                  navigate(TransactionStackRoutes.TransactionChangeCoords)
+                  navigate(TransactionStackRoutes.TransactionChangeCoords, {
+                    id: data.Id,
+                  })
                 }
               />
 

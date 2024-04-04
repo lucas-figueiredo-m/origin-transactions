@@ -9,6 +9,9 @@ import Compass from './compass.svg';
 import MapPin from './map-pin.svg';
 import Map from './map.svg';
 import Filter from './filter.svg';
+import Close from './x.svg';
+import Camera from './camera.svg';
+import File from './file.svg';
 
 export {
   Logo,
@@ -22,4 +25,7 @@ export {
   MapPin,
   Map,
   Filter,
+  Close,
+  Camera,
+  File,
 };

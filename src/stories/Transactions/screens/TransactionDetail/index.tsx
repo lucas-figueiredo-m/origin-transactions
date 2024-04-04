@@ -5,7 +5,7 @@ import {
 } from '@navigators';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useGetTransactionDetailsQuery } from '@store';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TouchableOpacity, View, useWindowDimensions } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
 import { styles } from './styles';
@@ -24,6 +24,7 @@ import {
   TransactionText,
 } from './components';
 import { Screen } from '@components';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 type TransactionDetailRoute =
   TransactionStackRouteParams<TransactionStackRoutes.TransactionDetails>;
@@ -36,15 +37,23 @@ export const TransactionDetail: React.FC = () => {
   const { navigate } = useNavigation<TransactionDetailNavigation>();
   const { height } = useWindowDimensions();
   const mapRef = useRef<MapView>(null);
-  const { data, isFetching, isError } = useGetTransactionDetailsQuery(
+  const { data, isFetching, isError, refetch } = useGetTransactionDetailsQuery(
     params.id,
   );
+  const { isConnected } = useNetInfo();
   const translation = useSharedValue(0);
   const animatedStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: translation.value }],
     };
   });
+
+  useEffect(() => {
+    if (isError && isConnected) {
+      refetch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const t = useTranslation();
 

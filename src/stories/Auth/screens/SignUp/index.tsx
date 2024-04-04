@@ -1,5 +1,11 @@
-import React from 'react';
-import { Alert, SafeAreaView, Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import {
+  Alert,
+  SafeAreaView,
+  Text,
+  TextInput as RNTextInput,
+  View,
+} from 'react-native';
 import { styles } from './styles';
 import { Avatar, Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
@@ -17,6 +23,11 @@ export const SignUp: React.FC = () => {
   const t = useTranslation();
   const { onSignUpPress, control, errors, loading, image, onEditImagePress } =
     useSignUpForm();
+
+  const emailInputRef = useRef<RNTextInput>(null);
+  const nameInputRef = useRef<RNTextInput>(null);
+  const passwordInputRef = useRef<RNTextInput>(null);
+  const passwordConfirmInputRef = useRef<RNTextInput>(null);
 
   const { navigate } = useNavigation<SignUpNavigation>();
 
@@ -46,6 +57,8 @@ export const SignUp: React.FC = () => {
             name="email"
             render={({ field }) => (
               <TextInput
+                ref={emailInputRef}
+                onSubmitEditing={() => nameInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signUp.email'}
                 onChangeText={field.onChange}
@@ -61,6 +74,8 @@ export const SignUp: React.FC = () => {
             name="name"
             render={({ field }) => (
               <TextInput
+                ref={nameInputRef}
+                onSubmitEditing={() => passwordInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signUp.name'}
                 onChangeText={field.onChange}
@@ -76,6 +91,8 @@ export const SignUp: React.FC = () => {
             name="password"
             render={({ field }) => (
               <TextInput
+                ref={passwordInputRef}
+                onSubmitEditing={() => passwordConfirmInputRef.current?.focus()}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signUp.password'}
@@ -90,6 +107,8 @@ export const SignUp: React.FC = () => {
             name="confirmPassword"
             render={({ field }) => (
               <TextInput
+                ref={passwordConfirmInputRef}
+                onSubmitEditing={onSignUp}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signUp.confirmPassword'}

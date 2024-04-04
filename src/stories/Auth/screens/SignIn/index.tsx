@@ -1,5 +1,11 @@
-import React from 'react';
-import { Pressable, SafeAreaView, Text, View } from 'react-native';
+import React, { useRef } from 'react';
+import {
+  Pressable,
+  SafeAreaView,
+  Text,
+  View,
+  TextInput as RNTextInput,
+} from 'react-native';
 import { styles } from './styles';
 import { Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
@@ -22,6 +28,9 @@ export const SignIn: React.FC = () => {
   const { onSignInPress, control, errors, loading } = useSignInForm();
   const { keepSignedIn } = useSelector(settingsSelector);
   const dispatch = useAppDispatch();
+
+  const emailInputRef = useRef<RNTextInput>(null);
+  const passwordInputRef = useRef<RNTextInput>(null);
 
   const { navigate } = useNavigation<SignInNavigation>();
 
@@ -46,6 +55,8 @@ export const SignIn: React.FC = () => {
             name="email"
             render={({ field }) => (
               <TextInput
+                ref={emailInputRef}
+                onSubmitEditing={() => passwordInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signIn.email'}
                 onChangeText={field.onChange}
@@ -61,6 +72,8 @@ export const SignIn: React.FC = () => {
             name="password"
             render={({ field }) => (
               <TextInput
+                ref={passwordInputRef}
+                onSubmitEditing={onSignInPress}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signIn.password'}

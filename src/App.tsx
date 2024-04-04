@@ -6,6 +6,8 @@ import '@locales';
 import { Provider } from 'react-redux';
 import { persistor, store } from '@store';
 import { PersistGate } from 'redux-persist/integration/react';
+import Toast from 'react-native-toast-message';
+import { toastConfig } from '@components';
 
 const App: React.FC = () => {
   return (
@@ -14,6 +16,7 @@ const App: React.FC = () => {
         <NavigationContainer>
           <MainStack />
         </NavigationContainer>
+        <Toast config={toastConfig} />
       </PersistGate>
     </Provider>
   );

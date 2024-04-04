@@ -1,5 +1,12 @@
 export default {
   hello: 'Hello',
+  common: {
+    noInternetConnection: 'You are offline',
+    noInternetConnectionMessage:
+      "Don't worry. You can still use the app, but some features may not work properly.",
+    error: 'Error',
+    success: 'Congrats',
+  },
   signIn: {
     email: 'E-mail',
     password: 'Password',

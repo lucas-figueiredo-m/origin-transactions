@@ -5,6 +5,7 @@ import { Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
 import { Controller } from 'react-hook-form';
 import { useAppDispatch, useTranslation } from '@hooks';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { useSignInForm } from './hooks';
 import { useNavigation } from '@react-navigation/native';
@@ -33,64 +34,69 @@ export const SignIn: React.FC = () => {
   };
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Logo width={200} height={200} />
-      <View style={styles.inputContainer}>
-        <Controller
-          control={control}
-          name="email"
-          render={({ field }) => (
-            <TextInput
-              style={styles.input}
-              placeholder={'signIn.email'}
-              onChangeText={field.onChange}
-              autoCapitalize="none"
-              keyboardType="email-address"
-              value={field.value}
-              error={errors.email?.message}
-            />
-          )}
-        />
-        <Controller
-          control={control}
-          name="password"
-          render={({ field }) => (
-            <TextInput
-              style={styles.input}
-              secureTextEntry
-              placeholder={'signIn.password'}
-              onChangeText={field.onChange}
-              value={field.value}
-              error={errors.password?.message}
-            />
-          )}
-        />
-        <View style={styles.keepSignedContainer}>
-          <CheckBox
-            value={keepSignedIn}
-            onValueChange={onKeepSignedInToggle}
-            tintColor={Colors.Primary}
-            onTintColor={Colors.Primary}
-            onCheckColor={Colors.Primary}
-            boxType="square"
-            tintColors={{ true: Colors.Primary, false: Colors.Primary }}
+    <KeyboardAwareScrollView
+      bounces={false}
+      contentContainerStyle={styles.keyboardAwareContent}
+    >
+      <SafeAreaView style={styles.root}>
+        <Logo width={200} height={200} />
+        <View style={styles.inputContainer}>
+          <Controller
+            control={control}
+            name="email"
+            render={({ field }) => (
+              <TextInput
+                style={styles.input}
+                placeholder={'signIn.email'}
+                onChangeText={field.onChange}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                value={field.value}
+                error={errors.email?.message}
+              />
+            )}
           />
-          <Pressable onPress={onKeepSignedInToggle}>
-            <Text>{t('signIn.keepSigned')}</Text>
-          </Pressable>
+          <Controller
+            control={control}
+            name="password"
+            render={({ field }) => (
+              <TextInput
+                style={styles.input}
+                secureTextEntry
+                placeholder={'signIn.password'}
+                onChangeText={field.onChange}
+                value={field.value}
+                error={errors.password?.message}
+              />
+            )}
+          />
+          <View style={styles.keepSignedContainer}>
+            <CheckBox
+              value={keepSignedIn}
+              onValueChange={onKeepSignedInToggle}
+              tintColor={Colors.Primary}
+              onTintColor={Colors.Primary}
+              onCheckColor={Colors.Primary}
+              boxType="square"
+              tintColors={{ true: Colors.Primary, false: Colors.Primary }}
+            />
+            <Pressable onPress={onKeepSignedInToggle}>
+              <Text>{t('signIn.keepSigned')}</Text>
+            </Pressable>
+          </View>
         </View>
-      </View>
-      <Button.Large
-        loading={loading}
-        label={'signIn.signIn'}
-        onPress={onSignInPress}
-      />
-      <Text style={styles.signUpContainer}>
-        <Text>{t('signIn.dontHaveAccount')}</Text>
-        <Text onPress={onSignUpPress} style={styles.signUp}>
-          {t('signIn.signUp')}
+        <Button.Large
+          loading={loading}
+          label={'signIn.signIn'}
+          onPress={onSignInPress}
+        />
+        <Text style={styles.signUpContainer}>
+          <Text>{t('signIn.dontHaveAccount')}</Text>
+          <Text onPress={onSignUpPress} style={styles.signUp}>
+            {t('signIn.signUp')}
+          </Text>
         </Text>
-      </Text>
-    </SafeAreaView>
+      </SafeAreaView>
+    </KeyboardAwareScrollView>
   );
 };

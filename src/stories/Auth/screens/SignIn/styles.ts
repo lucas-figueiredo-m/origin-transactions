@@ -38,4 +38,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     gap: 16,
   },
+  keyboardAwareContent: {
+    flex: 1,
+  },
 });

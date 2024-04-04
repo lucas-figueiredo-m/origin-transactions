@@ -4,7 +4,7 @@ import {
   AuthService,
   FirebaseStorageService,
   FirestoreService,
-  ImagePickerService,
+  ImagePickerResponse,
 } from '@services';
 import { useState } from 'react';
 import {
@@ -32,6 +32,7 @@ export const useSignUpForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [imagePickerVisible, setImagePickerVisible] = useState(false);
   const [signUpError, setSignUpError] = useState({ error: false, message: '' });
   const [image, setImage] = useState<ImageData>({ base64: '', path: '' });
 
@@ -60,12 +61,11 @@ export const useSignUpForm = () => {
     }
   };
 
-  const onEditImagePress = async () => {
-    const result = await ImagePickerService.getImageFromGallery();
-    if (!result) {
+  const onMethodPress = (img: ImagePickerResponse) => {
+    if (!img) {
       return;
     }
-    setImage(result);
+    setImage(img);
   };
 
   const onSignUpPress = handleSubmit(onSubmit);
@@ -80,8 +80,10 @@ export const useSignUpForm = () => {
     errors,
     loading,
     image,
-    onEditImagePress,
     clearSignUpError,
     signUpError,
+    imagePickerVisible,
+    setImagePickerVisible,
+    onMethodPress,
   };
 };

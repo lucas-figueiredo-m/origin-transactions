@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import { styles } from './styles';
-import { Avatar, Button, TextInput } from '@components';
+import { Avatar, Button, ImagePicker, TextInput } from '@components';
 import { Logo } from '@assets/icons';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from '@hooks';
@@ -27,9 +27,11 @@ export const SignUp: React.FC = () => {
     errors,
     loading,
     image,
-    onEditImagePress,
+    onMethodPress,
     signUpError,
     clearSignUpError,
+    imagePickerVisible,
+    setImagePickerVisible,
   } = useSignUpForm();
 
   const emailInputRef = useRef<RNTextInput>(null);
@@ -64,12 +66,22 @@ export const SignUp: React.FC = () => {
 
   return (
     <KeyboardAwareScrollView bounces={false}>
+      <ImagePicker
+        visible={imagePickerVisible}
+        setVisible={setImagePickerVisible}
+        onCameraPress={onMethodPress}
+        onGalleryPress={onMethodPress}
+      />
+
       <SafeAreaView style={styles.root}>
         <View style={styles.header}>
           <Logo width={75} height={75} />
           <Text style={styles.title}>{t('signUp.title')}</Text>
         </View>
-        <Avatar src={image.base64} onEditPress={onEditImagePress} />
+        <Avatar
+          src={image.base64}
+          onEditPress={() => setImagePickerVisible(true)}
+        />
         <View style={styles.inputContainer}>
           <Controller
             control={control}

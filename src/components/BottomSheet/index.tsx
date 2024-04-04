@@ -16,7 +16,7 @@ import { Colors } from '@theme';
 type BottomSheetProps = {
   isVisible: boolean;
   setVisible: Dispatch<SetStateAction<boolean>>;
-  onDismiss: () => void;
+  onDismiss?: () => void;
   children: React.ReactNode;
   title: string;
   contentStyle?: StyleProp<ViewStyle>;

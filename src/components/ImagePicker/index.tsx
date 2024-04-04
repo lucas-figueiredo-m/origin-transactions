@@ -11,6 +11,7 @@ type ImagePickerProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   onCameraPress: (image: ImagePickerResponse) => void;
   onGalleryPress: (image: ImagePickerResponse) => void;
+  onDismissPicker?: () => void;
 };
 
 export const ImagePicker: React.FC<ImagePickerProps> = ({
@@ -18,13 +19,14 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   setVisible,
   onCameraPress,
   onGalleryPress,
+  onDismissPicker,
 }) => {
   const { onCameraSelect, onGallerySelect } = useImagePicker();
   return (
     <BottomSheet
       isVisible={visible}
       setVisible={setVisible}
-      onDismiss={() => console.log('Close')}
+      onDismiss={onDismissPicker}
       title="Upload Method"
       contentStyle={styles.bottomSheetContent}
     >

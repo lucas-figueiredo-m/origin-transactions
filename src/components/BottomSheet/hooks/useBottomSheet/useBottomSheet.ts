@@ -15,7 +15,7 @@ type UseBottomSheet = (
 ) => {
   overlayStyles: StyleProp<ViewStyle>;
   bottomSheetStyles: StyleProp<ViewStyle>;
-  onModalDismiss: (onDismissCallback: () => void) => void;
+  onModalDismiss: (onDismissCallback?: () => void) => void;
 };
 
 const ANIMATION_DURATION = 500;
@@ -54,8 +54,8 @@ export const useBottomSheet: UseBottomSheet = (isVisible, setVisible) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVisible]);
 
-  const onModalDismiss = (onDismissCallback: () => void) => {
-    onDismissCallback();
+  const onModalDismiss = (onDismissCallback?: () => void) => {
+    onDismissCallback?.();
     translationY.value = withTiming(height / 2, {
       duration: ANIMATION_DURATION,
     });

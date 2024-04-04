@@ -35,14 +35,14 @@ Your task is to create a simple mobile application with the following features:
 
 - [x] The application should be developed using React Native.
 - [x] Ensure the app is compatible with both iOS and Android.
-- [ ] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
+- [x] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
 - [x] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
 - [ ] Include a README file with clear instructions on how to set up and run your application.
 
 ## ** Other Technical Requirements**
 
-- [ ] On image picker, dismiss modal after upload is succesfull
-- [ ] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
+- [x] On image picker, dismiss modal after upload is succesfull
+- [x] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
 - [ ] Complete Profile screen
 - [ ] Apply translations
 - [ ] Validate all strings are translated

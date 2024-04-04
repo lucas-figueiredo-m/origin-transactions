@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { BottomSheet } from '../BottomSheet';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
+import { BottomSheet, BottomSheetRef } from '../BottomSheet';
 import { Camera, File } from '@assets/icons';
 import { ImagePickerOption } from './components';
 import { styles } from './styles';
@@ -11,6 +11,7 @@ type ImagePickerProps = {
   setVisible: Dispatch<SetStateAction<boolean>>;
   onCameraPress: (image: ImagePickerResponse) => void;
   onGalleryPress: (image: ImagePickerResponse) => void;
+  onDismissPicker?: () => void;
 };
 
 export const ImagePicker: React.FC<ImagePickerProps> = ({
@@ -18,13 +19,16 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   setVisible,
   onCameraPress,
   onGalleryPress,
+  onDismissPicker,
 }) => {
-  const { onCameraSelect, onGallerySelect } = useImagePicker();
+  const ref = useRef<BottomSheetRef>(null);
+  const { onCameraSelect, onGallerySelect } = useImagePicker(ref);
   return (
     <BottomSheet
+      ref={ref}
       isVisible={visible}
       setVisible={setVisible}
-      onDismiss={() => console.log('Close')}
+      onDismiss={onDismissPicker}
       title="Upload Method"
       contentStyle={styles.bottomSheetContent}
     >

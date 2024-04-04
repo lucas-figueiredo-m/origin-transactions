@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { SettingsActions, settingsSelector } from '@store';
 import { useAppDispatch } from '@hooks';
+import { ReactNativeFirebase } from '@react-native-firebase/app';
 
 type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignIn>;
 
@@ -33,6 +34,7 @@ export const useSignInForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [signInError, setSignInError] = useState({ error: false, message: '' });
   const { reset } = useNavigation<SignInNavigation>();
   const { keepSignedIn } = useSelector(settingsSelector);
   const dispatch = useAppDispatch();
@@ -61,9 +63,20 @@ export const useSignInForm = () => {
         ],
       });
     } catch (error) {
+      const firebaseError: ReactNativeFirebase.NativeFirebaseError =
+        error as ReactNativeFirebase.NativeFirebaseError;
+      if (firebaseError.code === 'auth/invalid-credential') {
+        setSignInError({ error: true, message: 'signIn.invalidCredentials' });
+      } else {
+        setSignInError({ error: true, message: 'signIn.unknownError' });
+      }
     } finally {
       setLoading(false);
     }
+  };
+
+  const clearSignInError = () => {
+    setSignInError({ error: false, message: '' });
   };
 
   const onSignInPress = handleSubmit(onSubmit);
@@ -73,5 +86,7 @@ export const useSignInForm = () => {
     control,
     errors,
     loading,
+    signInError,
+    clearSignInError,
   };
 };

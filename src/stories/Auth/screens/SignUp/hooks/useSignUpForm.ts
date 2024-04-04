@@ -4,7 +4,7 @@ import {
   AuthService,
   FirebaseStorageService,
   FirestoreService,
-  ImagePickerService,
+  ImagePickerResponse,
 } from '@services';
 import { useState } from 'react';
 import {
@@ -12,6 +12,7 @@ import {
   SignUpValidator,
   SignUpValidatorType,
 } from '../validator';
+import { ReactNativeFirebase } from '@react-native-firebase/app';
 
 type ImageData = {
   base64: string;
@@ -31,6 +32,8 @@ export const useSignUpForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const [imagePickerVisible, setImagePickerVisible] = useState(false);
+  const [signUpError, setSignUpError] = useState({ error: false, message: '' });
   const [image, setImage] = useState<ImageData>({ base64: '', path: '' });
 
   const onSubmit = async (data: SignUpValidatorType) => {
@@ -46,21 +49,30 @@ export const useSignUpForm = () => {
       );
       await FirestoreService.createUser(user.user?.uid, data.name, imageUrl);
     } catch (error) {
+      const firebaseError = error as ReactNativeFirebase.NativeFirebaseError;
+      if (firebaseError.code === 'auth/email-already-in-use') {
+        setSignUpError({ error: true, message: 'signUp.emailAlreadyInUse' });
+      } else {
+        setSignUpError({ error: true, message: 'signUp.unknownError' });
+      }
       console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
-  const onEditImagePress = async () => {
-    const result = await ImagePickerService.getImageFromGallery();
-    if (!result) {
+  const onMethodPress = (img: ImagePickerResponse) => {
+    if (!img) {
       return;
     }
-    setImage(result);
+    setImage(img);
   };
 
   const onSignUpPress = handleSubmit(onSubmit);
+
+  const clearSignUpError = () => {
+    setSignUpError({ error: false, message: '' });
+  };
 
   return {
     onSignUpPress,
@@ -68,6 +80,10 @@ export const useSignUpForm = () => {
     errors,
     loading,
     image,
-    onEditImagePress,
+    clearSignUpError,
+    signUpError,
+    imagePickerVisible,
+    setImagePickerVisible,
+    onMethodPress,
   };
 };

@@ -18,6 +18,8 @@ export default {
     dontHaveAccount: "Don't have an account? ",
     signUp: 'Sign up',
     keepSigned: 'Keep me signed in',
+    invalidCredentials: 'Invalid e-mail or password',
+    unknownError: 'An unknown error occurred',
   },
   signUp: {
     email: 'E-mail',
@@ -32,6 +34,8 @@ export default {
     signIn: 'Sign In',
     passwordsDontMatch: 'Passwords do not match',
     title: 'Origin Transactions',
+    emailAlreadyInUse: 'E-mail already in use',
+    unknownError: 'An unknown error occurred',
   },
   tabNavigator: {
     transactionsList: 'Transactions',

@@ -13,11 +13,20 @@ import {
   SignUpValidatorType,
 } from '../validator';
 import { ReactNativeFirebase } from '@react-native-firebase/app';
+import { useNavigation } from '@react-navigation/native';
+import {
+  AuthStackNavigationParams,
+  AuthStackRoutes,
+  MainStackRoutes,
+  TabRoutes,
+} from '@navigators';
 
 type ImageData = {
   base64: string;
   path: string;
 };
+
+type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignUp>;
 
 export const useSignUpForm = () => {
   const {
@@ -32,6 +41,7 @@ export const useSignUpForm = () => {
   });
 
   const [loading, setLoading] = useState(false);
+  const { reset } = useNavigation<SignInNavigation>();
   const [imagePickerVisible, setImagePickerVisible] = useState(false);
   const [signUpError, setSignUpError] = useState({ error: false, message: '' });
   const [image, setImage] = useState<ImageData>({ base64: '', path: '' });
@@ -52,6 +62,15 @@ export const useSignUpForm = () => {
         name: data.name,
         email: data.email,
         profilePic: imageUrl,
+      });
+      reset({
+        index: 0,
+        routes: [
+          {
+            name: MainStackRoutes.TabNavigator,
+            params: { screen: TabRoutes.TransactionsList },
+          },
+        ],
       });
     } catch (error) {
       const firebaseError = error as ReactNativeFirebase.NativeFirebaseError;

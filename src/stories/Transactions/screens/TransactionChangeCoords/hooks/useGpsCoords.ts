@@ -1,4 +1,4 @@
-import { useTranslation } from '@hooks';
+import { useToast, useTranslation } from '@hooks';
 import {
   TransactionStackNavigationParams,
   TransactionStackRoutes,
@@ -17,6 +17,7 @@ export const useGpsCoords = (transactionId: number) => {
   const { goBack } = useNavigation<TransactionChangeCoordsNavigation>();
   const [mutate, { isLoading, isError, isSuccess }] =
     useChangeTransactionCoordinatesMutation();
+  const Toast = useToast();
 
   const handlePermissionBlocked = (message: string) => {
     return Alert.alert('Attention', t(message), [
@@ -43,12 +44,10 @@ export const useGpsCoords = (transactionId: number) => {
         const { latitude: Lat, longitude: Lon } = coords;
 
         await mutate({ Lat, Lon, id: transactionId });
+        Toast.ShowSuccess('transactionMapPicker.success');
         goBack();
       } catch (error) {
-        Alert.alert(
-          'Error',
-          'An error happened trying to update your GPS coords. Please try again.',
-        );
+        Toast.ShowError('transactionMapPicker.errorMessage');
       }
     });
   };

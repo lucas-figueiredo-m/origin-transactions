@@ -30,7 +30,7 @@ export const TransactionReceipt: React.FC = () => {
       )}
       <SafeAreaView style={styles.buttonContainer}>
         <Button.Large
-          label={'Upload Receipt'}
+          label={'transactionReceipt.uploadReceipt'}
           onPress={() => setVisible(true)}
         />
       </SafeAreaView>

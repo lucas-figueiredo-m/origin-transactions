@@ -1,4 +1,4 @@
-import { usePermissions, useTranslation } from '@hooks';
+import { usePermissions, useToast } from '@hooks';
 import {
   TransactionStackNavigationParams,
   TransactionStackRoutes,
@@ -9,7 +9,6 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { Scopes } from '@services';
 import { useChangeTransactionCoordinatesMutation } from '@store';
 import { useEffect, useMemo, useState } from 'react';
-import { Alert } from 'react-native';
 import { LatLng, Region } from 'react-native-maps';
 
 type TransactionMapPickerNavigation =
@@ -31,7 +30,8 @@ export const useMapPicker = () => {
   const [mutate, { isLoading }] = useChangeTransactionCoordinatesMutation();
   const { params } = useRoute<TransactionMapPickerRoute>();
   const { popToTop } = useNavigation<TransactionMapPickerNavigation>();
-  const t = useTranslation();
+
+  const Toast = useToast();
 
   useEffect(() => {
     if (granted) {
@@ -54,12 +54,10 @@ export const useMapPicker = () => {
     try {
       const { latitude: Lat, longitude: Lon } = area;
       await mutate({ Lat, Lon, id: params.id });
+      Toast.ShowSuccess('transactionMapPicker.success');
       popToTop();
     } catch (error) {
-      Alert.alert(
-        t('transactionMapPicker.error'),
-        t('transactionMapPicker.errorMessage'),
-      );
+      Toast.ShowError('transactionMapPicker.errorMessage');
     }
   };
 

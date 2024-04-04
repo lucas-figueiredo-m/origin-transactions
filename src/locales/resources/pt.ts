@@ -86,6 +86,7 @@ export default {
     error: 'Erro',
     errorMessage:
       'Ocorreu um erro ao tentar atualizar suas coordenadas GPS. Por favor, tente novamente.',
+    success: 'Coordenadas atualizadas com sucesso',
   },
   profile: {
     displayName: 'Nome',
@@ -95,5 +96,9 @@ export default {
     english: 'Inglês',
     portuguese: 'Português',
     spanish: 'Espanhol',
+  },
+  transactionReceipt: {
+    receiptUploaded: 'Recibo enviado com sucesso',
+    uploadReceipt: 'Enviar Recibo',
   },
 };

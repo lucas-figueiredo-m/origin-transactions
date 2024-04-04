@@ -7,6 +7,7 @@ export enum Colors {
   BlackTranslucent = 'rgba(0, 0, 0, 0.5)',
   Grey = 'gray',
   LightGrey = '#D3D3D3',
+  LightestGrey = '#F5F5F5',
   Transparent = 'transparent',
   Error = '#FF0000',
   Success = '#00FF00',

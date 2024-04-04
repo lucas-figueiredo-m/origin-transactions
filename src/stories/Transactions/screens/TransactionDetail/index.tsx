@@ -141,6 +141,7 @@ export const TransactionDetail: React.FC = () => {
                 onPress={() =>
                   navigate(TransactionStackRoutes.TransactionReceipt, {
                     receiptUrl: data.ReceiptImage,
+                    id: data.Id,
                   })
                 }
               />

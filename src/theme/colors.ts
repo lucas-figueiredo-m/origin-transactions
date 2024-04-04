@@ -13,4 +13,5 @@ export enum Colors {
   Success = '#00FF00',
   Warning = '#FFA500',
   Support = '#FF3366',
+  DarkGreen = '#006400',
 }

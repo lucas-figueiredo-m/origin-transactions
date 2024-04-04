@@ -1,16 +1,21 @@
 import firestore from '@react-native-firebase/firestore';
+import { CreateFirestoreUser } from './FirestoreService.type';
 
 export class FirestoreService {
-  static async createUser(uid: string, name: string, profilePic: string) {
+  static async createUser({
+    uid,
+    name,
+    email,
+    profilePic,
+  }: CreateFirestoreUser) {
     return firestore().collection('users').doc(uid).set({
       name,
+      email,
       profilePic,
     });
+  }
 
-    // return firestore().collection('users').add({
-    //   name: 'Lucas',
-    //   profilePic: 'https://example.com/image.jpg',
-    //   uid: '1q2w3er45t6y67u8i8i',
-    // });
+  static async getUser(uid: string) {
+    return firestore().collection('users').doc(uid).get();
   }
 }

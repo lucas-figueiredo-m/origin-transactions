@@ -47,7 +47,12 @@ export const useSignUpForm = () => {
       const imageUrl = await FirebaseStorageService.getProfileImageUrl(
         user.user?.uid || '',
       );
-      await FirestoreService.createUser(user.user?.uid, data.name, imageUrl);
+      await FirestoreService.createUser({
+        uid: user.user?.uid,
+        name: data.name,
+        email: data.email,
+        profilePic: imageUrl,
+      });
     } catch (error) {
       const firebaseError = error as ReactNativeFirebase.NativeFirebaseError;
       if (firebaseError.code === 'auth/email-already-in-use') {

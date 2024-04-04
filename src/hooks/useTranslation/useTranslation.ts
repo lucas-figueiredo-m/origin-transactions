@@ -1,9 +1,17 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useTranslation as useTranslator } from 'react-i18next';
 import { Translation } from '.';
+import { useSelector } from 'react-redux';
+import { settingsSelector } from '@store';
 
 export const useTranslation = () => {
   const translate = useTranslator();
+  const { locale } = useSelector(settingsSelector);
+
+  useEffect(() => {
+    translate[1].changeLanguage(locale);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale]);
 
   const t = useCallback(
     (key: Translation) => {

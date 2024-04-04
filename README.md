@@ -1,109 +1,81 @@
-# Origin Mobile Take Home Assignment
+This is the Origin Transactions mobile project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-## **Introduction**
+# Getting Started
 
-This assignment assesses your skills and approach to building a mobile application using React Native. The focus is on creating an application that includes user authentication, transaction management, and integration of specific mobile features. It's important to consider that there will also be a React web desktop version of the same application. While you are not required to write the desktop version, your design should be scalable and maintainable, keeping in mind the existence of the web version.
+> **Note 1**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## **Assignment Overview**
+> **Note 2**: If you are going to run the project on iOS-based devices, make sure you have also followed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) for Mac, using iOS devices as well
 
-Your task is to create a simple mobile application with the following features:
+## Step 0: Include build files
 
-### **1. Sign-In and Sign-Up Page**
+This project uses some Firebase APIs and contains some secrets. In order to work properly, you need to add these files to the project.
 
-- [x] **Sign-In Page**: Allow users to sign in to their account.
-- [x] **Sign-Up Page**: Allow new users to create an account. During the sign-up process, users must enter basic information (like name, email, password, etc.) and upload a selfie.
+First, create a `.env` file at the root of the project. Next, copy all secret from `.env.example` and paste them on the new file.
 
-### **2. Transactions Listing Page**
+For setting up a Firebase project, follow these instructions for for [Android](https://rnfirebase.io/#generating-android-credentials) and [iOS](https://rnfirebase.io/#generating-android-credentials)
 
-- [x] Display a list of transactions associated with the logged-in user. Each list item should have a summary of the transaction (e.g., date, amount, type).
-  - [x] Required: pull to refresh
-  - [ ] Optional: sorting, filtering (client side)
+Now, as the project uses Google Maps on Android, we need to [Generate a Google Maps API key for Android](https://developers.google.com/maps/documentation/android-sdk/signup). This key should be pasted on your `.env` file.
 
-### **3. Transaction Details Page**
+## Step 1: Install Pods dependencies (iOS-only)
 
-- [x] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
-  - [x] **Required**: Allow users to attach the current GPS latitude and longitude coordinates to the transaction.
-  - [x] **Optional**: Provide an option to attach a receipt to the transaction.
-  - [x] **Optional**: Display location on the map
+If you are about to run this project on a iPhone/iPad simulator, first we need to install the Pods - Native iOS dependencies for hte libraries used in this project. To to so:
 
-### **4. App State Management Considerations**
+```bash
+# First, go to project's ios folder
+cd ios
 
-- [x] Ensure that the application handles the app state effectively, especially during typical mobile interactions such as using the power button or home button. The app should maintain a consistent state and user experience.
-- [x] Handle offline mode
-
-## **Technical Requirements**
-
-- [x] The application should be developed using React Native.
-- [x] Ensure the app is compatible with both iOS and Android.
-- [x] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
-- [x] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
-- [ ] Include a README file with clear instructions on how to set up and run your application.
-
-## ** Other Technical Requirements**
-
-- [x] On image picker, dismiss modal after upload is succesfull
-- [x] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
-- [ ] Complete Profile screen
-- [ ] Apply translations
-- [ ] Validate all strings are translated
-
-## Available Resources
-
-You have access to the following API’s:
-
-**Transactions - Listing**
-
-**Query parameters**
-
-page: required
-
-pageSize: required
-
-```markdown
-GET https://tque3jpn1e.execute-api.us-east-1.amazonaws.com/mobile-tha/transactions?page=?&pageSize=?
+# Then, run
+pod install
 ```
 
-**Transactions - Details**
+## Step 2: Start the Metro Server
 
-```markdown
-GET https://tque3jpn1e.execute-api.us-east-1.amazonaws.com/mobile-tha/transactions/{id}
+You will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+
+To start Metro, run the following command from the _root_ of your React Native project:
+
+```bash
+# using npm
+npm start
+
+# OR using Yarn
+yarn start
 ```
 
-**Transactions - Update coordinates**
+## Step 3: Start your Application
 
-```markdown
-POST https://tque3jpn1e.execute-api.us-east-1.amazonaws.com/mobile-tha/transactions/{id}/coordinates
+Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+
+### For Android
+
+```bash
+# using npm
+npm run android
+
+# OR using Yarn
+yarn run android
 ```
 
-Body
+### For iOS
 
-```
-{
-    "Lat": 1, --double,required, case sensitive
-    "Lon":1 --double, required, case sensitive
-}
-```
+```bash
+# using npm
+npm run iphone
 
-**Transactions - Upload receipt**
-
-```markdown
-POST https://tque3jpn1e.execute-api.us-east-1.amazonaws.com/mobile-tha/transactions/{id}/receipt
+# OR using Yarn
+yarn run iphone
 ```
 
-Body
+If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-```markdown
-{
-"ReceiptImageUrl": "foo" --string,required, case sensitive
-}
-```
+This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
 
-We don't have APIs for sign-in/sign-up, it is up to you to decide the best way to handle it.
+# Troubleshooting
 
-Note: both POST APIs do not update internal resources as it would affect other candidates, thus such APIs are for demonstration only.
+If you can't get this to work, see the [React Native Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
-## **Submission Guidelines**
+# Assumptions
 
-- [ ] Provide the source code via a GitHub repository.
-- [ ] Include a video demonstration of the app covering all the functionalities.
-- [ ] Document any assumptions made and your thought process in the README file.
+- The offline mode should only work for listing data, not for updating anything like receipt or transaction GPS coordinates
+- Persisting user's session is basically storing some of their info. Ideally, it should be way more complex then that, depending on the app target industry.
+- Some additional features have been included on the app, such as a simple profile screen and multilanguage support

@@ -16,6 +16,9 @@ import WifiOff from './wifi-off.svg';
 import XOctagon from './x-octagon.svg';
 import CheckCircle from './check-circle.svg';
 import Wifi from './wifi.svg';
+import LogOut from './log-out.svg';
+import Globe from './globe.svg';
+import Check from './check.svg';
 
 export {
   Logo,
@@ -36,4 +39,7 @@ export {
   XOctagon,
   CheckCircle,
   Wifi,
+  LogOut,
+  Globe,
+  Check,
 };

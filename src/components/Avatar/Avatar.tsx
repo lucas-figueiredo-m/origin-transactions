@@ -22,9 +22,16 @@ export const Avatar: React.FC<AvatarProps> = ({ src, style, onEditPress }) => {
       {src !== '' && (
         <Image source={{ uri: src }} style={[styles.image, style]} />
       )}
-      <TouchableOpacity onPress={onEditPress} style={styles.iconContainer}>
-        <EditIcon width={24} height={24} strokeWidth={2} color={Colors.White} />
-      </TouchableOpacity>
+      {onEditPress && (
+        <TouchableOpacity onPress={onEditPress} style={styles.iconContainer}>
+          <EditIcon
+            width={24}
+            height={24}
+            strokeWidth={2}
+            color={Colors.White}
+          />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };

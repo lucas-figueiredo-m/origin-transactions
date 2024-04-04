@@ -1,5 +1,14 @@
 export default {
   hello: 'Hello',
+  common: {
+    noInternetConnection: 'You are offline',
+    noInternetConnectionMessage:
+      "Don't worry. You can still use the app, but some features may not work properly.",
+    error: 'Error',
+    success: 'Congrats',
+    connected: 'You are back online!',
+    connectedMessage: 'You can now use all the app features again',
+  },
   signIn: {
     email: 'E-mail',
     password: 'Password',
@@ -8,6 +17,7 @@ export default {
     validPassword: 'Your password must have at least 1 character',
     dontHaveAccount: "Don't have an account? ",
     signUp: 'Sign up',
+    keepSigned: 'Keep me signed in',
   },
   signUp: {
     email: 'E-mail',

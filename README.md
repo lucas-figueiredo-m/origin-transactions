@@ -23,13 +23,13 @@ Your task is to create a simple mobile application with the following features:
 
 - [x] When a user selects a transaction from the list, they should be navigated to a detailed view of the transaction.
   - [x] **Required**: Allow users to attach the current GPS latitude and longitude coordinates to the transaction.
-  - [ ] **Optional**: Provide an option to attach a receipt to the transaction.
+  - [x] **Optional**: Provide an option to attach a receipt to the transaction.
   - [x] **Optional**: Display location on the map
 
 ### **4. App State Management Considerations**
 
 - [x] Ensure that the application handles the app state effectively, especially during typical mobile interactions such as using the power button or home button. The app should maintain a consistent state and user experience.
-- [ ] Handle offline mode
+- [x] Handle offline mode
 
 ## **Technical Requirements**
 
@@ -38,6 +38,14 @@ Your task is to create a simple mobile application with the following features:
 - [ ] Implement proper error handling and validation, especially for the sign-in and sign-up processes.
 - [x] Write clean, modular, and reusable code. Consider component reusability for the React web desktop version.
 - [ ] Include a README file with clear instructions on how to set up and run your application.
+
+## ** Other Technical Requirements**
+
+- [ ] On image picker, dismiss modal after upload is succesfull
+- [ ] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
+- [ ] Complete Profile screen
+- [ ] Apply translations
+- [ ] Validate all strings are translated
 
 ## Available Resources
 

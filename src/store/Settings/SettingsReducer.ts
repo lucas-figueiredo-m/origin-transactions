@@ -4,10 +4,22 @@ import { RootState } from '../store';
 
 export type SettingsState = {
   locale: Locales;
+  keepSignedIn: boolean;
+  user: {
+    displayName: string;
+    email: string;
+    uid: string;
+  };
 };
 
 const initialState: SettingsState = {
   locale: 'en',
+  keepSignedIn: false,
+  user: {
+    displayName: '',
+    email: '',
+    uid: '',
+  },
 };
 
 const SettingsStateSlice = createSlice({
@@ -16,6 +28,15 @@ const SettingsStateSlice = createSlice({
   reducers: {
     setLocale(settings, action: PayloadAction<Locales>) {
       settings.locale = action.payload;
+    },
+    setKeepSignedIn(settings, action: PayloadAction<boolean>) {
+      settings.keepSignedIn = action.payload;
+    },
+    setUserData(settings, action: PayloadAction<SettingsState['user']>) {
+      settings.user = action.payload;
+    },
+    resetUser(settings) {
+      settings.user = initialState.user;
     },
   },
 });

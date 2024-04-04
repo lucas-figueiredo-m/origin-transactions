@@ -32,4 +32,10 @@ export const styles = StyleSheet.create({
     textDecorationLine: 'underline',
     color: Colors.Support,
   },
+  keepSignedContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 16,
+  },
 });

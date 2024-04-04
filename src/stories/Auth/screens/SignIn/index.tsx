@@ -1,20 +1,26 @@
 import React from 'react';
-import { SafeAreaView, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, Text, View } from 'react-native';
 import { styles } from './styles';
 import { Button, TextInput } from '@components';
 import { Logo } from '@assets/icons';
 import { Controller } from 'react-hook-form';
-import { useTranslation } from '@hooks';
+import { useAppDispatch, useTranslation } from '@hooks';
 
 import { useSignInForm } from './hooks';
 import { useNavigation } from '@react-navigation/native';
 import { AuthStackNavigationParams, AuthStackRoutes } from '@navigators';
+import { useSelector } from 'react-redux';
+import { SettingsActions, settingsSelector } from '@store';
+import CheckBox from '@react-native-community/checkbox';
+import { Colors } from '@theme';
 
 type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignIn>;
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();
   const { onSignInPress, control, errors, loading } = useSignInForm();
+  const { keepSignedIn } = useSelector(settingsSelector);
+  const dispatch = useAppDispatch();
 
   const { navigate } = useNavigation<SignInNavigation>();
 
@@ -22,7 +28,9 @@ export const SignIn: React.FC = () => {
     navigate(AuthStackRoutes.SignUp);
   };
 
-  // TODO: add a checkbox to keep user connected and persist user session
+  const onKeepSignedInToggle = () => {
+    dispatch(SettingsActions.setKeepSignedIn(!keepSignedIn));
+  };
 
   return (
     <SafeAreaView style={styles.root}>
@@ -57,6 +65,20 @@ export const SignIn: React.FC = () => {
             />
           )}
         />
+        <View style={styles.keepSignedContainer}>
+          <CheckBox
+            value={keepSignedIn}
+            onValueChange={onKeepSignedInToggle}
+            tintColor={Colors.Primary}
+            onTintColor={Colors.Primary}
+            onCheckColor={Colors.Primary}
+            boxType="square"
+            tintColors={{ true: Colors.Primary, false: Colors.Primary }}
+          />
+          <Pressable onPress={onKeepSignedInToggle}>
+            <Text>{t('signIn.keepSigned')}</Text>
+          </Pressable>
+        </View>
       </View>
       <Button.Large
         loading={loading}

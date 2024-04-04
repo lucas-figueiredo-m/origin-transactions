@@ -12,6 +12,10 @@ import Filter from './filter.svg';
 import Close from './x.svg';
 import Camera from './camera.svg';
 import File from './file.svg';
+import WifiOff from './wifi-off.svg';
+import XOctagon from './x-octagon.svg';
+import CheckCircle from './check-circle.svg';
+import Wifi from './wifi.svg';
 
 export {
   Logo,
@@ -28,4 +32,8 @@ export {
   Close,
   Camera,
   File,
+  WifiOff,
+  XOctagon,
+  CheckCircle,
+  Wifi,
 };

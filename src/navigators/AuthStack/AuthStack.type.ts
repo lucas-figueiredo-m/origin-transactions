@@ -4,6 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { MainStackNavigationParams, MainStackRoutes } from '../MainStack';
 
 export type AuthStackParamList = {
+  [AuthStackRoutes.SpashScreen]: undefined;
   [AuthStackRoutes.SignIn]: undefined;
   [AuthStackRoutes.SignUp]: undefined;
 };

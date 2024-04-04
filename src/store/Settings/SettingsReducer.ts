@@ -39,6 +39,9 @@ const SettingsStateSlice = createSlice({
       settings.user = initialState.user;
       settings.keepSignedIn = initialState.keepSignedIn;
     },
+    setLanguage(settings, action: PayloadAction<Locales>) {
+      settings.locale = action.payload;
+    },
   },
 });
 

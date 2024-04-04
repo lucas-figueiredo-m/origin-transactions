@@ -90,5 +90,10 @@ export default {
   profile: {
     displayName: 'Name',
     email: 'E-mail',
+    changeLanguage: 'Change language',
+    selectLanguage: 'Select language',
+    english: 'English',
+    portuguese: 'Portuguese',
+    spanish: 'Spanish',
   },
 };

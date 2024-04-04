@@ -1,3 +1,4 @@
+import { Colors } from '@theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -28,5 +29,40 @@ export const styles = StyleSheet.create({
   },
   avatarContainer: {
     alignItems: 'center',
+  },
+  languageButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 8,
+    backgroundColor: Colors.LightGrey,
+    borderRadius: 8,
+  },
+  bottomSheetContent: {
+    gap: 8,
+  },
+  languageTextContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  languageText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  languageItem: {
+    flexDirection: 'row',
+    gap: 8,
+    backgroundColor: Colors.LightestGrey,
+    paddingVertical: 4,
+    borderRadius: 8,
+  },
+  checkContainer: {
+    flex: 10,
+  },
+  languageItemText: {
+    flex: 90,
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

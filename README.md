@@ -43,7 +43,7 @@ Your task is to create a simple mobile application with the following features:
 
 - [x] On image picker, dismiss modal after upload is succesfull
 - [x] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
-- [ ] Complete Profile screen
+- [x] Complete Profile screen
 - [ ] Apply translations
 - [ ] Validate all strings are translated
 

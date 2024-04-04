@@ -6,6 +6,8 @@ export default {
       "Don't worry. You can still use the app, but some features may not work properly.",
     error: 'Error',
     success: 'Congrats',
+    connected: 'You are back online!',
+    connectedMessage: 'You can now use all the app features again',
   },
   signIn: {
     email: 'E-mail',

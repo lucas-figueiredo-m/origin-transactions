@@ -29,7 +29,7 @@ Your task is to create a simple mobile application with the following features:
 ### **4. App State Management Considerations**
 
 - [x] Ensure that the application handles the app state effectively, especially during typical mobile interactions such as using the power button or home button. The app should maintain a consistent state and user experience.
-- [ ] Handle offline mode
+- [x] Handle offline mode
 
 ## **Technical Requirements**
 

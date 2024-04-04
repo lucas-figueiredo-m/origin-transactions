@@ -25,6 +25,7 @@ module.exports = {
           '@assets': ['./src/assets'],
           '@theme': ['./src/theme'],
           '@utils': ['./src/utils'],
+          '@listeners': ['./src/listeners'],
           '@services': ['./src/services'],
         },
       },

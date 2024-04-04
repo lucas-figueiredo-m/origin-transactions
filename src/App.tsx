@@ -8,6 +8,7 @@ import { persistor, store } from '@store';
 import { PersistGate } from 'redux-persist/integration/react';
 import Toast from 'react-native-toast-message';
 import { toastConfig } from '@components';
+import { ConnectionListener } from '@listeners';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <NavigationContainer>
           <MainStack />
         </NavigationContainer>
+        <ConnectionListener />
         <Toast config={toastConfig} />
       </PersistGate>
     </Provider>

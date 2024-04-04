@@ -16,6 +16,14 @@ export const useToast = () => {
       text2: t('common.noInternetConnectionMessage'),
     });
   };
+  const WifiOn = () => {
+    Toast.show({
+      ...defaultToastShowConfig,
+      type: 'WifiOnToast',
+      text1: t('common.connected'),
+      text2: t('common.connectedMessage'),
+    });
+  };
 
   const ShowError = (reason: Translation) => {
     Toast.show({
@@ -37,6 +45,7 @@ export const useToast = () => {
 
   return {
     WifiOff,
+    WifiOn,
     ShowError,
     ShowSuccess,
   };

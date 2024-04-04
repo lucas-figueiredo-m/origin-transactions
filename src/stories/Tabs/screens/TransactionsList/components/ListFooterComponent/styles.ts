@@ -1,3 +1,4 @@
+import { Colors } from '@theme';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -7,6 +8,8 @@ export const styles = StyleSheet.create({
     paddingVertical: '10%',
   },
   message: {
-    fontSize: 16,
+    // fontSize: 16,
+    fontWeight: '600',
+    color: Colors.Grey,
   },
 });

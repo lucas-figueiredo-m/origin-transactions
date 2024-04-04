@@ -8,6 +8,7 @@ export default {
     validPassword: 'Your password must have at least 1 character',
     dontHaveAccount: "Don't have an account? ",
     signUp: 'Sign up',
+    keepSigned: 'Keep me signed in',
   },
   signUp: {
     email: 'E-mail',

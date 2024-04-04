@@ -3,6 +3,7 @@ import { RootState } from '../store';
 import {
   Transaction,
   TransactionChangeCoordinates,
+  TransactionReceipt,
   TransactionsQuery,
 } from '.';
 
@@ -69,6 +70,18 @@ export const transactionsApi = createApi({
         { type: 'TransactionDetail', id: arg.id },
       ],
     }),
+    uploadReceipt: builder.mutation<void, TransactionReceipt>({
+      query: ({ id, ReceiptImageUrl }) => {
+        return {
+          url: `/${id}/receipt`,
+          method: 'POST',
+          body: { ReceiptImageUrl },
+        };
+      },
+      invalidatesTags: (req, res, arg) => [
+        { type: 'TransactionDetail', id: arg.id },
+      ],
+    }),
   }),
 });
 
@@ -76,6 +89,7 @@ export const {
   useGetTransactionsListQuery,
   useGetTransactionDetailsQuery,
   useChangeTransactionCoordinatesMutation,
+  useUploadReceiptMutation,
 } = transactionsApi;
 
 export const transactionsSelector = (state: RootState) => state.transactions;

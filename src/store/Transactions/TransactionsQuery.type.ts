@@ -25,3 +25,8 @@ export type TransactionChangeCoordinates = {
   Lat: number;
   Lon: number;
 };
+
+export type TransactionReceipt = {
+  id: number;
+  ReceiptImageUrl: string;
+};

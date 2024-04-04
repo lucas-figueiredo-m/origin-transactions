@@ -41,7 +41,7 @@ Your task is to create a simple mobile application with the following features:
 
 ## ** Other Technical Requirements**
 
-- [ ] On image picker, dismiss modal after upload is succesfull
+- [x] On image picker, dismiss modal after upload is succesfull
 - [x] Validates Firebase auth errors and display a message on screen (SignIn and SignUp)
 - [ ] Complete Profile screen
 - [ ] Apply translations

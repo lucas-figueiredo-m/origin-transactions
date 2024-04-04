@@ -21,7 +21,7 @@ export const useProfile = () => {
 
   const getUserData = useCallback(async () => {
     const response = await FirestoreService.getUser(user.uid);
-    console.log('response', response.data());
+
     if (response.exists) {
       setUserData((response.data() as UserData) ?? defaultUserData);
     }

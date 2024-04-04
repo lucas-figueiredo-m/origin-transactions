@@ -7,6 +7,7 @@ import { TabNavigatorParamList } from '.';
 import { withTabIcon } from './HOC';
 import { useTranslation } from '@hooks';
 import { Colors } from '@theme';
+import { HeaderRight } from './components';
 
 const Tabs = createBottomTabNavigator<TabNavigatorParamList>();
 
@@ -33,6 +34,7 @@ export const TabNavigator: React.FC = () => {
           tabBarIcon: UserIcon,
           tabBarLabel: t('tabNavigator.profile'),
           headerTitle: t('tabNavigator.profile'),
+          headerRight: HeaderRight,
         }}
       />
     </Tabs.Navigator>

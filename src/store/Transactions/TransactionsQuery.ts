@@ -90,6 +90,7 @@ export const {
   useGetTransactionDetailsQuery,
   useChangeTransactionCoordinatesMutation,
   useUploadReceiptMutation,
+  util: { resetApiState: resetTransactionsApiState },
 } = transactionsApi;
 
 export const transactionsSelector = (state: RootState) => state.transactions;

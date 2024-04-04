@@ -35,8 +35,9 @@ const SettingsStateSlice = createSlice({
     setUserData(settings, action: PayloadAction<SettingsState['user']>) {
       settings.user = action.payload;
     },
-    resetUser(settings) {
+    resetStore(settings) {
       settings.user = initialState.user;
+      settings.keepSignedIn = initialState.keepSignedIn;
     },
   },
 });

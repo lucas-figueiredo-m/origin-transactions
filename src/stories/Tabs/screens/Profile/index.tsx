@@ -3,10 +3,11 @@ import { View, Text } from 'react-native';
 import { styles } from './styles';
 import { Avatar } from '@components';
 import { useProfile } from './hooks';
+import { useTranslation } from '@hooks';
 
 export const Profile: React.FC = () => {
   const { userData } = useProfile();
-  console.log('profileImage', userData);
+  const t = useTranslation();
   return (
     <View style={styles.root}>
       <View style={styles.avatarContainer}>
@@ -14,11 +15,13 @@ export const Profile: React.FC = () => {
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.textContainer}>
-          <Text style={styles.containerTitle}>Display name: </Text>
+          <Text style={styles.containerTitle}>
+            {t('profile.displayName')}:{' '}
+          </Text>
           <Text style={styles.containerContent}>{userData.name}</Text>
         </View>
         <View style={styles.textContainer}>
-          <Text style={styles.containerTitle}>Email: </Text>
+          <Text style={styles.containerTitle}>{t('profile.email')}: </Text>
           <Text style={styles.containerContent}>{userData.email}</Text>
         </View>
       </View>

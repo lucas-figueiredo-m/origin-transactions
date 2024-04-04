@@ -87,4 +87,8 @@ export default {
     errorMessage:
       'An error happened trying to update your GPS coords. Please try again.',
   },
+  profile: {
+    displayName: 'Name',
+    email: 'E-mail',
+  },
 };

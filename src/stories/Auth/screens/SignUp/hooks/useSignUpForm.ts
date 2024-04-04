@@ -37,14 +37,13 @@ export const useSignUpForm = () => {
     setLoading(true);
     try {
       const user = await AuthService.signUp(data.email, data.password);
-      await FirebaseStorageService.uploadImage(
+      await FirebaseStorageService.uploadProfileImage(
         image.path,
         user.user?.uid || '',
       );
-      const imageUrl = await FirebaseStorageService.getImageUrl(
+      const imageUrl = await FirebaseStorageService.getProfileImageUrl(
         user.user?.uid || '',
       );
-      console.log(imageUrl);
       await FirestoreService.createUser(user.user?.uid, data.name, imageUrl);
     } catch (error) {
       console.log(error);

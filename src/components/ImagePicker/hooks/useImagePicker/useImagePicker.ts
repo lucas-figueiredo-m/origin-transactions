@@ -1,7 +1,9 @@
+import { BottomSheetRef } from '@components';
 import { usePermissions } from '@hooks';
 import { ImagePickerResponse, ImagePickerService, Scopes } from '@services';
+import { RefObject } from 'react';
 
-export const useImagePicker = () => {
+export const useImagePicker = (ref: RefObject<BottomSheetRef>) => {
   const [cameraGranted, requestCamera] = usePermissions(Scopes.Camera);
   const [galleryGranted, requestGallery] = usePermissions(Scopes.IMAGE);
 
@@ -16,6 +18,7 @@ export const useImagePicker = () => {
     const image = await ImagePickerService.getImageFromCamera();
 
     onCameraPressCallback(image);
+    ref.current?.dismiss();
   };
 
   const onGallerySelect = async (
@@ -29,6 +32,7 @@ export const useImagePicker = () => {
     const image = await ImagePickerService.getImageFromGallery();
 
     onGalleryPressCallback(image);
+    ref.current?.dismiss();
   };
 
   return {

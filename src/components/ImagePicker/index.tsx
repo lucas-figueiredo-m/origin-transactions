@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { BottomSheet } from '../BottomSheet';
+import React, { Dispatch, SetStateAction, useRef } from 'react';
+import { BottomSheet, BottomSheetRef } from '../BottomSheet';
 import { Camera, File } from '@assets/icons';
 import { ImagePickerOption } from './components';
 import { styles } from './styles';
@@ -21,9 +21,11 @@ export const ImagePicker: React.FC<ImagePickerProps> = ({
   onGalleryPress,
   onDismissPicker,
 }) => {
-  const { onCameraSelect, onGallerySelect } = useImagePicker();
+  const ref = useRef<BottomSheetRef>(null);
+  const { onCameraSelect, onGallerySelect } = useImagePicker(ref);
   return (
     <BottomSheet
+      ref={ref}
       isVisible={visible}
       setVisible={setVisible}
       onDismiss={onDismissPicker}

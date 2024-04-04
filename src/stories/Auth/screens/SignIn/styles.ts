@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 16,
+    gap: 24,
   },
 
   inputContainer: {
@@ -25,6 +25,17 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '500',
     fontSize: 12,
+  },
+
+  buttonContainer: {
+    height: 60 + 12 + 8,
+    gap: 8,
+  },
+
+  error: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: Colors.Error,
   },
 
   signUp: {

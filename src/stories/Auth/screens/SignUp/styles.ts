@@ -43,4 +43,15 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '500',
   },
+
+  buttonContainer: {
+    height: 60 + 12 + 8,
+    gap: 8,
+  },
+
+  error: {
+    textAlign: 'center',
+    fontSize: 12,
+    color: Colors.Error,
+  },
 });

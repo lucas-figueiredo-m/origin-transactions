@@ -25,7 +25,14 @@ type SignInNavigation = AuthStackNavigationParams<AuthStackRoutes.SignIn>;
 
 export const SignIn: React.FC = () => {
   const t = useTranslation();
-  const { onSignInPress, control, errors, loading } = useSignInForm();
+  const {
+    onSignInPress,
+    control,
+    errors,
+    loading,
+    signInError,
+    clearSignInError,
+  } = useSignInForm();
   const { keepSignedIn } = useSelector(settingsSelector);
   const dispatch = useAppDispatch();
 
@@ -42,6 +49,17 @@ export const SignIn: React.FC = () => {
     dispatch(SettingsActions.setKeepSignedIn(!keepSignedIn));
   };
 
+  const onFieldChange = (
+    value: string,
+    onChangeCallback: (value: string) => void,
+  ) => {
+    if (signInError.error) {
+      clearSignInError();
+    }
+
+    onChangeCallback(value);
+  };
+
   return (
     <KeyboardAwareScrollView
       bounces={false}
@@ -53,16 +71,16 @@ export const SignIn: React.FC = () => {
           <Controller
             control={control}
             name="email"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={emailInputRef}
                 onSubmitEditing={() => passwordInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signIn.email'}
-                onChangeText={field.onChange}
+                onChangeText={str => onFieldChange(str, onChange)}
                 autoCapitalize="none"
                 keyboardType="email-address"
-                value={field.value}
+                value={value}
                 error={errors.email?.message}
               />
             )}
@@ -70,15 +88,15 @@ export const SignIn: React.FC = () => {
           <Controller
             control={control}
             name="password"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={passwordInputRef}
                 onSubmitEditing={onSignInPress}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signIn.password'}
-                onChangeText={field.onChange}
-                value={field.value}
+                onChangeText={str => onFieldChange(str, onChange)}
+                value={value}
                 error={errors.password?.message}
               />
             )}
@@ -98,11 +116,16 @@ export const SignIn: React.FC = () => {
             </Pressable>
           </View>
         </View>
-        <Button.Large
-          loading={loading}
-          label={'signIn.signIn'}
-          onPress={onSignInPress}
-        />
+        <View style={styles.buttonContainer}>
+          <Button.Large
+            loading={loading}
+            label={'signIn.signIn'}
+            onPress={onSignInPress}
+          />
+          {signInError.error && (
+            <Text style={styles.error}>{t(signInError.message)}</Text>
+          )}
+        </View>
         <Text style={styles.signUpContainer}>
           <Text>{t('signIn.dontHaveAccount')}</Text>
           <Text onPress={onSignUpPress} style={styles.signUp}>

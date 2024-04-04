@@ -21,8 +21,16 @@ type SignUpNavigation = AuthStackNavigationParams<AuthStackRoutes.SignUp>;
 
 export const SignUp: React.FC = () => {
   const t = useTranslation();
-  const { onSignUpPress, control, errors, loading, image, onEditImagePress } =
-    useSignUpForm();
+  const {
+    onSignUpPress,
+    control,
+    errors,
+    loading,
+    image,
+    onEditImagePress,
+    signUpError,
+    clearSignUpError,
+  } = useSignUpForm();
 
   const emailInputRef = useRef<RNTextInput>(null);
   const nameInputRef = useRef<RNTextInput>(null);
@@ -43,6 +51,17 @@ export const SignUp: React.FC = () => {
     onSignUpPress();
   };
 
+  const onFieldChange = (
+    value: string,
+    onChangeCallback: (value: string) => void,
+  ) => {
+    if (signUpError.error) {
+      clearSignUpError();
+    }
+
+    onChangeCallback(value);
+  };
+
   return (
     <KeyboardAwareScrollView bounces={false}>
       <SafeAreaView style={styles.root}>
@@ -55,16 +74,16 @@ export const SignUp: React.FC = () => {
           <Controller
             control={control}
             name="email"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={emailInputRef}
                 onSubmitEditing={() => nameInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signUp.email'}
-                onChangeText={field.onChange}
+                onChangeText={str => onFieldChange(str, onChange)}
                 autoCapitalize="none"
                 keyboardType="email-address"
-                value={field.value}
+                value={value}
                 error={errors.email?.message}
               />
             )}
@@ -72,16 +91,16 @@ export const SignUp: React.FC = () => {
           <Controller
             control={control}
             name="name"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={nameInputRef}
                 onSubmitEditing={() => passwordInputRef.current?.focus()}
                 style={styles.input}
                 placeholder={'signUp.name'}
-                onChangeText={field.onChange}
-                autoCapitalize="none"
+                onChangeText={str => onFieldChange(str, onChange)}
+                autoCapitalize="words"
                 keyboardType="email-address"
-                value={field.value}
+                value={value}
                 error={errors.name?.message}
               />
             )}
@@ -89,15 +108,15 @@ export const SignUp: React.FC = () => {
           <Controller
             control={control}
             name="password"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={passwordInputRef}
                 onSubmitEditing={() => passwordConfirmInputRef.current?.focus()}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signUp.password'}
-                onChangeText={field.onChange}
-                value={field.value}
+                onChangeText={str => onFieldChange(str, onChange)}
+                value={value}
                 error={errors.password?.message}
               />
             )}
@@ -105,25 +124,30 @@ export const SignUp: React.FC = () => {
           <Controller
             control={control}
             name="confirmPassword"
-            render={({ field }) => (
+            render={({ field: { value, onChange } }) => (
               <TextInput
                 ref={passwordConfirmInputRef}
                 onSubmitEditing={onSignUp}
                 style={styles.input}
                 secureTextEntry
                 placeholder={'signUp.confirmPassword'}
-                onChangeText={field.onChange}
-                value={field.value}
+                onChangeText={str => onFieldChange(str, onChange)}
+                value={value}
                 error={errors.confirmPassword?.message}
               />
             )}
           />
         </View>
-        <Button.Large
-          loading={loading}
-          label={'signUp.signUp'}
-          onPress={onSignUp}
-        />
+        <View style={styles.buttonContainer}>
+          <Button.Large
+            loading={loading}
+            label={'signUp.signUp'}
+            onPress={onSignUp}
+          />
+          {signUpError.error && (
+            <Text style={styles.error}>{t(signUpError.message)}</Text>
+          )}
+        </View>
         <Text style={styles.signInContainer}>
           <Text>{t('signUp.doesHaveAccount')}</Text>
           <Text onPress={onSignInPress} style={styles.signIn}>

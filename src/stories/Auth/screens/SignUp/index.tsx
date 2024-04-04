@@ -77,7 +77,7 @@ export const SignUp: React.FC = () => {
             render={({ field }) => (
               <TextInput
                 style={styles.input}
-                // secureTextEntry
+                secureTextEntry
                 placeholder={'signUp.password'}
                 onChangeText={field.onChange}
                 value={field.value}
@@ -91,7 +91,7 @@ export const SignUp: React.FC = () => {
             render={({ field }) => (
               <TextInput
                 style={styles.input}
-                // secureTextEntry
+                secureTextEntry
                 placeholder={'signUp.confirmPassword'}
                 onChangeText={field.onChange}
                 value={field.value}
